@@ -1,0 +1,341 @@
+﻿
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- METAS -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- TITLE -->
+    <title>Kyk-Motor</title>
+    @*Eduranın linkleri start*@
+    <link rel="shortcut icon" href="images/favicon.png" />
+
+    <!-- LOAD MAIN CSS -->
+    <link href="~/edura/style.css" rel="stylesheet" type="text/css">
+
+    <!-- LOAD COLOR STYLE (OPTONAL) CSS -->
+    <link href="~/edura/styles/lunar.css" rel="stylesheet" type="text/css" id="colorstyle">
+
+    <!-- LOAD CUSTOM CSS -->
+    <link href="~/edura/custom.css" rel="stylesheet" type="text/css">
+
+    <!-- LOAD DEMO CSS -->
+    <link href="~/edura/demo/demo.css" rel="stylesheet" type="text/css">
+    @*Eduranın linkleri And*@
+    <!-- FAVICON -->
+    <link rel="~/edura/shortcut icon" href="images/favicon.png" />
+
+    <!-- LOAD MAIN CSS --> 
+  
+
+    <link href="~/style.css" rel="stylesheet" />
+   
+    <link href="~/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+ 
+    <link href="~/vendor/animate/animate.css" rel="stylesheet" />
+    <link href="~/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/vendor/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <link href="~/vendor/owl-carousel/owl.transitions.css" rel="stylesheet" />
+    <link href="~/vendor/hero-slider/css/style.css" rel="stylesheet" />
+    <link href="~/styles/lunar.css" rel="stylesheet" />
+    <!-- LOAD CUSTOM CSS -->
+    <link href="~/custom.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+
+    <!-- LOAD DEMO CSS -->
+ 
+    <link href="~/demo/demo.css" rel="stylesheet" />
+<style>
+    li a i {
+        margin-right:0.50rem;
+    }
+
+        .list-unstyled li i{
+            margin-right: 0.50rem;
+        }
+         .col-md-3 img{
+            width: 100%;
+            max-width: 21rem;
+            display: block;
+            /* margin: 0 auto 10px; */
+            height: 7rem;
+            margin-bottom: 1rem;
+         
+         }
+        .navImg{
+            width: 100%;
+            max-width: 20rem;
+            height: 11rem;
+            border-radius: 100%;
+            border: dashed 0.3rem;
+         }
+        .img{
+            width: 100%;
+            max-width: 21rem;
+            display: block;
+            /* margin: 0 auto 10px; */
+            height: 7rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+            .social-icons li a {
+                font-size: 20px;
+                color: #555;
+                transition: color 0.3s ease;
+            }
+
+                .social-icons li a:hover {
+                    color: #007bff; /* Hover'da renk değişimi */
+                }
+
+        #logo-container {
+            position: fixed;
+            top: 0.5rem;
+            left: 9%;
+            transform: translateX(-50%); /* Gerçek ortalama */
+            z-index: 1000; /* En üstte görünmesi için yüksek bir z-index */
+         
+        }
+
+        .navbar {
+            z-index: 500; /* Navbar'ın altında görünmesi için daha düşük bir z-index */
+        }
+
+       
+
+</style>
+
+    @RenderSection("Styles", required: false)
+</head>
+
+<body >
+
+ 
+
+    <section id="header">
+        <!-- Logo -->
+        <div id="logo-container">
+            <a class="category-link" href="#">
+                <img class="navImg" src="" alt="Logo" >@* Bu kısma Logo gelicek*@
+            </a>
+        </div>
+            <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top" style="background-color:rgb(0 0 0 / 60%);padding:0;border-radius:0">
+           <div class="container">
+               <div class="navbar-collapse collapse">
+                   @await Component.InvokeAsync("NavbarList")
+                </div>
+           </div>
+        </nav>
+        <nav class="navbar navbar-default navbar-fixed-buttom1" style="background-color:rgb(0 0 0 / 60%);padding:0;border-radius:0">
+            <div class="container" style="display:block">
+                <div class="navbar-header">
+                    <!--Bu kısım Hanburger menu içinde -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="container">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    @await Component.InvokeAsync("CategoryList")
+                   </ul>
+                </div>
+            </div>
+        
+            </nav>
+   </section>
+        <!-- HEADER END -->
+        <div class="container-fluid" style="padding:0;margin:0;height:auto;background-color:azure">
+       
+        @RenderBody()
+        
+       </div>   
+
+            <!-- FOOTER START -->
+            <section id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                        <img src="" alt=""> @*BU KISMA LOGO GELECEK*@
+                            <p>Sosyal media kanallarımızı takip etmeyi unutmayın.Bizleri takip ediniz.</b>.</p>
+                            <br>
+                    <ul class="list-unstyled list-inline social-icons">
+                        <li>
+                            <a href="https://www.facebook.com/?locale=tr_TR" class="facebook" aria-label="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://x.com/?lang=tr" class="twitter" aria-label="X (eski Twitter)">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+
+                      
+
+                        <li>
+                            <a href="https://www.instagram.com/webmobilgenius/" class="instagram" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.linkedin.com/in/serpiluzuntas/" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://seninsiten.com" target="_blank" aria-label="Kişisel Web Sitem">
+                                <i class="fa fa-globe"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                         @*    <ul class="list-unstyled list-inline social-icons">
+                          <li><a href="https://www.facebook.com/?locale=tr_TR" class="facebook"><i class="fab fa-facebook"></i></a></li>
+                          <li><a href="https://x.com/?lang=tr" class="twitter"><i class="fab fa-twitter"></i></a></li>  
+                            <li><a href="https://www.youtube.com/" class="youtube"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="https://www.instagram.com/webmobilgenius/" class="Instagram"><i class="fab fa-instagram"></i></a></li>
+                       
+                        <li> <a href="https://www.linkedin.com/in/serpiluzuntas/" target="_blank"><i class="fa fa-linkedin"></i></a> </li>
+                      
+                        <li>
+                            <a href="https://seninsiten.com" target="_blank" aria-label="Kişisel Web Sitem">
+                                <i class="fa fa-globe"></i>
+                            </a>
+                        </li>
+                            </ul> *@
+                        </div>
+                        <div class="col-md-3">
+                            <h4>ARAMALAR</h4>
+                            <ul class="list-unstyled">
+                              <li><i class="fas fa-home"></i><a href="#">ANASAYFA</a></li>
+                               <li><i class="fas fa-layer-group"></i><a href="#">KATEGORİLER</a></li>
+                             <li><i class="fas fa-cogs"></i><a href="#">SERVICES</a></li>
+                                <li><i class="fas fa-users"></i> <a href="#">HAKKIMIZDA</a></li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h4>İLETİŞİM</h4>
+                            <p><i class="fa fa-map-pin fa-fw"></i>5860/sok Denizli Yeniköy</p>
+                           <p><i class="fa fa-phone fa-fw"></i> +(507)94 75 161</p>
+                            <p><i class="fa fa-envelope fa-fw"></i> motor@example.com</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h4>MAİL</h4>
+                            <p>Sorun ve önerileriniz için bizimle iletişime geçiniz.</p>
+                            <form action="#" method="post">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
+                                    </div>
+                                </div>
+                                <div class="form-group pull-right">
+                                    <button type="submit" class="btn btn-primary">GÖNDER</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <hr>
+                        <div class="col-md-12 text-center bottom">
+                         
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- FOOTER END -->
+    @*    </div>*@
+        
+    
+  @*  </div>*@
+
+
+@*  Edura script kod start*@
+    <script src="~/edura/vendor/jquery/jquery.min.js"></script>
+    <script src="~/edura/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/edura/vendor/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script src="~/edura/vendor/wow/wow.min.js"></script>
+    <script src="~/edura/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/edura/vendor/SmoothScroll/SmoothScroll.min.js"></script>
+    <script src="~/edura/vendor/waypoints/waypoints.min.js"></script>
+    <script src="~/edura/vendor/counterup/jquery.counterup.min.js"></script>
+
+
+    <!-- HERO SLIDER-->
+    <script src="~/edura/vendor/hero-slider/js/modernizr.js"></script>
+    <script src="~/edura/vendor/hero-slider/js/main.js"></script>
+
+    <!-- OWL CAROUSEL -->
+    <script src="~/edura/vendor/owl-carousel/owl.carousel.js"></script>
+
+    <!-- FILTERIZR -->
+    <script src="~/edura/vendor/jquery/jquery.filterizr.js"></script>
+
+    <!-- EDURA JS REQUIRED ON ALL PAGES-->
+    <script src="~/edura/edura.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-81122143-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+    <!-- STYLE SWITCHER -->
+    <script src="~/edura/demo/demo.js"></script>
+ 
+@* Edura Script Kod And*@
+
+    <!-- MAIN JS FILES REQUIRED ON ALL PAGES -->
+    <!-- Bootstrap ve Popper.js CDN -->
+
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+   
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+  
+    <script src="~/vendor/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script src="~/vendor/wow/wow.min.js"></script>
+    <script src="~/vendor/waypoints/waypoints.min.js"></script>
+    <script src="~/vendor/counterup/jquery.counterup.min.js"></script>
+    <!-- HERO SLIDER-->
+    <script src="~/vendor/hero-slider/js/main.js"></script>
+ 
+    <!-- OWL CAROUSEL -->
+    <script src="~/vendor/owl-carousel/owl.carousel.js"></script>
+
+    <!-- EDURA JS REQUIRED ON ALL PAGES-->
+    <script src="~/edura.js"></script>
+  
+    @await RenderSectionAsync("Scripts", required: false)
+ 
+</body>
+
+</html>
+

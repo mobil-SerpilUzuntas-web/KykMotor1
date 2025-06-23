@@ -1,0 +1,489 @@
+﻿@model KykMotorApp.WebIU.Models.ProductListModel
+@{
+    ViewData["Title"] = "IndexText";
+}
+
+<style>
+    .list-inlinem > li {
+        display: block;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .buttonDetay{
+        width: 100%;
+        font-size: 1.8rem;
+        padding: 1rem 0 1rem 0;
+    }
+
+  
+    #content {
+        padding-top: 20rem;
+    }
+
+    .product-item .product-item-top img {
+        border-bottom: solid 1px #CCC;
+    }
+
+    .H4 {
+        color: red;
+        font-size: 14px;
+    }
+
+    .liimg {
+        background: red;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .img {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .h3 {
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .h3Name {
+        margin-top: 148px;
+    }
+
+    .container-fluid {
+        background-color: white;
+    }
+</style>
+
+<!-- CONTENT START -->
+<section id="content">
+
+    <section id="shop" class="container">
+
+        <div class="row">
+
+            <!-- sidebar start -->
+            <div id="sidebar" class="col-md-3">
+                <div class="widget">
+                    <h4>Kategoriler </h4>
+                    <ul class="list-group">
+                   
+                        <select id="cateDrop" class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))">
+                        </select>
+                        <label class="col-form-label"></label>
+                        <select id="subbircadId" class="form-control subBir" disabled>
+                            <option selected disabled>Kategori Seçiniz</option>
+                        </select>
+                        <label class="col-form-label"></label>
+                        <select id="subikicadId" class="form-control subIki" disabled>
+                            <option selected disabled></option>
+                        </select>
+
+                    </ul>
+                </div>
+
+
+            </div>
+            <!-- sidebar end -->
+            @*    orta bölüm*@
+            <!-- right column start -->
+            <div class="col-md-9">
+      
+                <div class="row">
+
+                    @*    Bu kısım orta bölümün  en üst kısım*@
+                    <div class="col-md-12 wow fadeIn">
+                        <div class="row product-results">
+                            <div class="product-results">
+                                <div class="col-xs-8">
+                                    <p class="woocommerce-result-count">Tüm Ürünler</p>
+                                </div>
+@*                               Notumuzu aldık bu kısım kullanıcı bir 
+                               şeçimi yaptıgında o seçimi alınıyor ve o
+                               seçime göre sayfa getiriliyor 
+                               bu kısmı bir tane View Componelle yaparasın*@
+                                <div class="col-xs-4 text-right">
+                                    <form method="get" class="woocommerce-ordering">
+                                        <select class="form-control" name="orderby">
+                                            <option selected="selected" value="menu_order">Ürün Arama</option>
+                                            <option value="rating">En Ucuz Olanları Sırala</option>
+                                            <option value="date">Ürün Adına Göre Sırala</option>
+                                            <option value="price">Fiyata Göre Sırala</option>
+                                          
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row acilis">
+
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="col-md-4 wow fadeInUp">
+                            <div class="text-center product-item">
+                                <div class="product-item-top">
+                                    <img src="~/kykİmg/@item.Resims.FirstOrDefault().Name" />
+
+                                    <div class="mask"></div>
+                                    <ul class="list-unstyled list-inline">
+                                        <li><a href="/Home/Detay/@item.Id"><i class="fa fa-link fa-fw"></i></a></li>
+                                   </ul>
+                                </div>
+
+                                <div class="product-item-inner">
+                                    <h3 class="product-title"><a href="#">@item.Name</a></h3>
+                                    @* <ul class="list-unstyled list-inlinem">
+                                        <li>
+@*                                          <a href="/Home/urunDetay/@item.Id" class="btn btn-primary btn-sm ml-3">ÜrünDetay</a>
+                                            <a href="/Home/detayText/@item.Id" class="btn btn-primary btn-sm ml-3">Detaylarrrr</a>
+                                            <a href="/Category/DetayCategorySlider/@item.Id" class="btn btn-primary btn-sm ml-3">Category Detaylar</a>
+                                            <button type="button" class="buttonDetay"
+                                                href="/Home/Detay/@item.Id" class="btn btn-primary btn-sm ml-3">Detaylar</button>
+                                        </li>
+                                        <li>
+                                            if (User.Identity.IsAuthenticated)
+                                            {
+                                                <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline">
+                                                    <input type="hidden" name="ProductId" value="@item.Id">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <button type="submit" class="btn btn-primary btn-sm ml-3">Sepete Ekleyen</button>
+                                                </form>
+                                            }
+                                        </li>*@
+
+                                   @* </ul>*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @*  Orta Sayfa degişecek kısım*@
+
+
+
+
+
+                <!-- Bu div, seçilen kategoriye göre ürünlerin gösterileceği yer 1-->
+                <div id="categori1" class="row" style="display:none;">
+                </div>
+
+                <!-- Bu div, seçilen subbircategory göre ürünlerin gösterileceği yer 2-->
+                <div id="subbirdiv" class="row" style="display: none;">
+                </div>
+                <!-- Bu div, seçilen subikicategory göre ürünlerin gösterileceği yer 3-->
+                <div id="subikidiv" class="row" style="display: none;">
+                </div>
+            </div>
+            <!-- right column end -->
+
+        </div>
+    </section>
+</section>
+<!-- CONTENT END -->
+
+
+
+<script src="~/jquery/jquery.js" type="text/javascript"></script>
+
+
+
+@section Scripts{
+    <script>
+
+
+
+        //Burdan sonra Başlayan kodlar drop
+        //***********************************************************************
+
+        $(document).on('change', '#cateDrop', function () {
+            let id = $("#cateDrop option:selected").val();
+            $.ajax({
+                type: "GET",
+                url: "/Category/CategoriBir",
+                data: { categoryId: id },
+                success: function (data) {
+                    //DropdowMenu Tıklandıgında Sayfanın içinde ki eski verileri siler  yeni veriler sayfada
+                    //Gösterilir.Aşşada ki kodları yazmazsak DropdowMenu Tıklandıgında sayfamıza yeni
+                    //veriler getirilir Lakin Bir önce eski veriler de sayfa görünür
+                    $("#row").hide();
+                    $("#subbirdiv").hide();
+                    $("#subikidiv").hide();
+                    $(".acilis").hide();
+                    $("#categori1").empty().show(); // Yeni ürünleri göstereceğimiz alanı temizleyip gösteriyoruz
+
+                    // Her bir ürünü sayfada göstermek için döngü oluşturuyoruz
+
+
+                    $.each(data.products, function (index, item) {
+                        var productHtml = `
+                              <div class="col-md-4 wow fadeInUp">
+                                    <div class="text-center product-item">
+                                        <div class="product-item-top">
+
+                                            <img src="/kykİmg/${item.resims[0]}"/>
+                                            <div class="mask"></div>
+                                            <ul class="list-unstyled list-inline">
+                                             <li><a href="/Home/Detay/${item.id}"><i class="fa fa-link fa-fw"></i></a></li>
+
+                                            </ul>
+                                        </div>
+
+                                        <div class="product-item-inner">
+                                            <h3 class="product-title"><a href="#">${item.name}</a></h3>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                        // Ürünü "categori1" div'ine ekliyoruz
+                        $("#categori1").append(productHtml);
+                    });
+                },
+                error: function (error) {
+                    console.log("Veri gelmiyor", error);
+                }
+            });
+        });
+        // SubBirKategori seçildiğinde ürünleri getir ve göster
+        //subbircadId
+        $(document).on('change', '#subbircadId', function () {
+            console.log('SubBirCad tıklandı geldiiiii :');
+
+            let id = $("#subbircadId option:selected").val();
+            console.log('SubBirCad ID: geldiiiiiiii' + id);
+
+            $.ajax({
+                type: "GET",
+                url: "/Category/SubBirKategori",
+                //< li > <img style="height:120px;width:120px" src = "/kykİmg/${item.resims[0]}" /> </li>
+                data: { subBirId: id }, // Burada 'categoryId' değil 'subBirId' kullanıyoruz.
+                success: function (data) {
+                    $("#row").hide();
+                    $("#categori1").hide();
+                    $("#subikidiv").hide();
+                    $("#subbirdiv").empty().show();// ID'yi burada da güncelledik.
+
+                    $.each(data.products, function (index, item) {
+                        var subbirHtml = `
+                          <div class="col-md-4 wow fadeInUp">
+                                         <div class="text-center product-item">
+                                             <div class="product-item-top">
+                                                 <img src="/kykİmg/${item.resims[0]}"/>
+                                                 <div class="mask"></div>
+                                                 <ul class="list-unstyled list-inline">
+                                                  <li><a href="/Home/Detay/${item.id}"><i class="fa fa-link fa-fw"></i></a></li>
+
+                                                 </ul>
+                                             </div>
+
+                                             <div class="product-item-inner">
+                                                 <h3 class="product-title"><a href="#">${item.name}</a></h3>
+                                             </div>
+                                         </div>
+                                     </div>`;
+                        $("#subbirdiv").append(subbirHtml); // ID'yi burada da güncelledik.
+                        console.log(subbirHtml);
+                    });
+                },
+                error: function (error) {
+                    console.log("SubBirCategory Veri gelmiyor", error);
+                }
+            });
+        });
+
+        // SubIkiKategori seçildiğinde ürünleri getir ve göster
+        $(document).on('change', '#subikicadId', function () {
+            console.log('SubİkiCategori tıklandı geldiiiii :');
+            let id = $("#subikicadId option:selected").val();
+            $.ajax({
+                type: "GET",
+                url: "/Category/SubIkiKategori",
+                data: { subIkiId: id }, // Burada 'categoryId' değil 'subBirId' kullanıyoruz.
+                success: function (data) {
+                    $("#row").hide();
+                    $("#categori1").hide();
+                    $("#subbirdiv").hide();
+                    $("#subikidiv").empty().show();// ID'yi burada da güncelledik.
+
+                    $.each(data.products, function (index, item) {
+                        var subIkiHtml = `<div class="col-md-4 wow fadeInUp">
+                                                
+                                    <div class="text-center product-item">
+                                        <div class="product-item-top">
+                                            <img src="/kykİmg/${item.resims[0]}"/>
+                                            <div class="mask"></div>
+                                            <ul class="list-unstyled list-inline">
+                                             <li><a href="/Home/Detay/${item.id}"><i class="fa fa-link fa-fw"></i></a></li>
+
+                                            </ul>
+                                        </div>
+
+                                        <div class="product-item-inner">
+                                            <h3 class="product-title"><a href="#">${item.name}</a></h3>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                        $("#subikidiv").append(subIkiHtml); // ID'yi burada da güncelledik.
+
+                    });
+                },
+                error: function (error) {
+                    console.log("SubIkiCategory Veri gelmiyor", error);
+                }
+            });
+        });
+
+        //*********************************************************************************
+
+
+        //DropDownMenu #cateDrop butonuna tıklanınca .subBir getirilecek Ajax kısmı
+        $("#cateDrop").change(function () {
+            let id = $("#cateDrop option:selected").val();
+            console.log('CategoriId:' + id);
+
+            if (id) { // Eğer bir kategori seçildiyse
+                $("#subbircadId").prop('disabled', false); // subBir select'ini etkinleştir
+                $("#subikicadId").prop('disabled', true);  // subIki select'ini devre dışı bırak
+                $("#subikicadId").empty().append('<option selected disabled>Kategori Seçiniz</option>'); // subIki select'ini varsayılan duruma getir
+
+                $.ajax({
+                    type: "GET",
+                    url: "/Category/GetSubbir",
+                    data: { categoryId: id },
+                    success: function (data) {
+                        $("#subbircadId").empty();
+                        let items = '<option selected disabled>Kategori Seçiniz</option>';
+                        $.each(data, function (i, subBir) {
+                            items += '<option value="' + subBir.value + '">' + subBir.text + "</option>";
+                        });
+                        $("#subbircadId").html(items);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX isteği başarısız oldu: ", error);
+                    }
+                });
+            } else {
+                $("#subbircadId").prop('disabled', true);  // Kategori seçilmediyse subBir select'ini devre dışı bırak
+                $("#subikicadId").prop('disabled', true);  // subIki select'ini devre dışı bırak
+            }
+        });
+
+        // SubBir kategorisi seçildiğinde SubIki kategorilerini getirir
+        $(document).on('change', '#subbircadId', function () {
+            console.log("subBir Tıklandı");
+            let id = $("#subbircadId option:selected").val();
+            console.log("Gelen Subbir Id:" + id);
+
+            if (id) { // Eğer subBir seçildiyse
+                $("#subikicadId").prop('disabled', false); // subIki select'ini etkinleştir
+
+                $.ajax({
+                    type: "GET",
+                    url: "/Category/GetSub2Categories",
+                    data: { subbirId: id },
+                    success: function (data) {
+                        let items = '<option selected disabled>Kategori Seçiniz</option>';
+                        $.each(data, function (i, subIki) {
+                            items += '<option value="' + subIki.value + '">' + subIki.text + "</option>";
+                        });
+                        $("#subikicadId").html(items);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Subİkinin isteği başarısız oldu: ", error);
+                    }
+                });
+            } else {
+                $("#subikicadId").prop('disabled', true); // subIki seçilmediyse subIki select'ini devre dışı bırak
+            }
+        });
+
+
+    </script>
+}
+@*************************************************************************@
+<script>
+    const image = document.getElementById('originalImage');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    image.onload = () => {
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.drawImage(image, 0, 0);
+
+        // Piksel verilerini al
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+
+        // Renk manipülasyonu (örneğin kırmızı kanalı mavi yap)
+        for (let i = 0; i < data.length; i += 4) {
+            const red = data[i];
+            const green = data[i + 1];
+            const blue = data[i + 2];
+
+            // Örneğin kırmızı tonları maviye çevir
+            if (red > 200 && green < 100 && blue < 100) {
+                data[i] = 0;   // R
+                data[i + 1] = 0; // G
+                data[i + 2] = 255; // B
+            }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    };
+</script>
+
+
+@*  $.each(data.products, function (index, item)
+        $.each(data.products, function (index, item) {
+                        var productHtml = `
+                              <div class="col-md-4 wow fadeInUp">
+                                    <div class="text-center product-item">
+                                        <div class="product-item-top">
+
+                                            <img src="/kykİmg/${item.resims[0]}"/>
+                                            <div class="mask"></div>
+                                            <ul class="list-unstyled list-inlinem">
+                                             <li><a href="/Home/Detay/${item.id}"><i class="fa fa-link fa-fw"></i></a></li>
+
+                                            </ul>
+                                        </div>
+
+                                        <div class="product-item-inner">
+                                            <h3 class="product-title"><a href="#">${item.name}</a></h3>
+                                          <ul class="list-unstyled list-inline">
+
+                                            <li>
+                                              <a href="/Home/Detay/${item.id}" class="btn btn-primary btn-sm ml-3">Detaylar Buton</a>
+                                            </li>
+                                            <li>
+                                                 @if (User.Identity.IsAuthenticated)
+                                                 {
+                                                     <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline">
+                                                            <input type="hidden" name="ProductId" value="${item.id}"></input>
+                                                            <input type="hidden" name="quantity" value="1"></input>
+                                                            <button type="submit" class="btn btn-primary btn-sm ml-3">Sepete Ekle</button>
+                                                      </form>
+                                                 }
+                                              </li>
+
+                                        </ul>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                        // Ürünü "categori1" div'ine ekliyoruz
+                        $("#categori1").append(productHtml);
+                    });
+                },
+                error: function (error) {
+                    console.log("Veri gelmiyor", error);
+                }
+            });
+        });*@

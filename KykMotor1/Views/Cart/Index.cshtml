@@ -1,0 +1,439 @@
+﻿@model CartModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cart-container {
+            width: 60%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .seller {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+            .seller h3 {
+                display: flex;
+                justify-content: space-between;
+                font-size: 18px;
+                color: #333;
+            }
+
+        .seller-name {
+            font-weight: bold;
+        }
+
+        .rating {
+            background: #ffcc00;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .shipping-info,
+        .free-shipping {
+            color: #ff5733;
+            font-size: 14px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+            .cart-item img {
+                width: 80px;
+                height: auto;
+                margin-right: 15px;
+                border-radius: 5px;
+            }
+
+        .item-info {
+            flex-grow: 1;
+        }
+
+            .item-info p {
+                margin: 5px 0;
+            }
+
+        .delivery-info {
+            color: #27ae60;
+            font-size: 14px;
+        }
+
+        .sales-info {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+            .quantity button {
+                width: 30px;
+                height: 30px;
+                border: none;
+                background: #ddd;
+                cursor: pointer;
+                font-size: 18px;
+                margin: 0 5px;
+                border-radius: 5px;
+            }
+
+            .quantity span {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+            .order-summary h3 {
+                margin-bottom: 10px;
+            }
+
+            .order-summary p {
+                display: flex;
+                justify-content: space-between;
+                font-size: 16px;
+            }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 10px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+            .confirm-btn:hover {
+                background: #219150;
+            }
+
+       .order-summary .btn {
+        background: dimgray;
+        color: white;
+        font-size: 1.2em;
+        padding: 1rem;
+    }
+      
+
+     .order-summary .btn .fa{
+         text-align: center;
+         margin-right: 1rem;
+     }
+    </style>
+@*********************************************************************************@
+
+
+<div class="cart-container" style="margin-top:16rem">
+    <div class="seller">
+        <h3>Satıcı: <span class="seller-name">Kyk Motor</span> <span class="rating">9.8</span></h3>
+
+    </div>
+
+    @foreach (var item in Model.CartItems)
+    {
+
+        <div class="cart-item" data-price="@item.Price">
+            <img src="~/kykİmg/@item.Resims.FirstOrDefault().Name" alt="OrdoVeni Vitamin A Serum">
+            <div class="item-info">
+                <p><strong>@item.ProductName</strong> Vitamin A & Retinol Cilt Bakım Serumu 30ml</p>
+                <p class="delivery-info">🚚 15 saat 26 dakika içinde sipariş verirseniz yarın kargoda!</p>
+                <div class="quantity">
+                    <button class="decrease">-</button>
+                    <span class="quantity-value">@item.Quantity</span>
+                    <button class="increase">+</button>
+                </div>
+
+            </div>
+@*            <div><p class="price">@((item.Price * item.Quantity).ToString("N2")) TL</p></div>*@
+            <div><p class="price">@item.NormalTotal().ToString("N2") TL</p></div>
+          
+            @*  <p class="price">@((item.Price * item.Quantity * 1.08).ToString("N2")) TL</p>*@
+        </div>
+    }
+    
+    <div class="order-summary">
+        <h3>Sipariş Özeti</h3>
+        <p>Ürünün Toplamı: <strong class="subtotal">0.00 TL</strong></p>
+        <p>Kargo Toplamı: <strong>44,99 TL</strong></p>
+        <p class="total">Toplam Kdv Fiyat: <strong class="total-price">0.00 TL</strong></p>
+        <a asp-controller="Cart" asp-action="Odeme" class="btn btn-block btn-primary">
+          <i class="fa fa-arrow-circle-right fa-fw"></i>Sepeti Onayla
+        </a>
+    </div>
+</div>
+@*<a asp-controller="Cart" asp-action="Teslimat" class="btn btnpanel-primary">
+    <i class="fa fa-arrow-circle-right fa-fw"></i>Devam Et Adres Fatura Alıcı Bilgileri Sayfası
+</a>*@
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function updatePrice($cartItem) {
+            var unitPrice = parseFloat($cartItem.data("price"));
+            var quantity = parseInt($cartItem.find(".quantity-value").text());
+            var totalPrice = unitPrice * quantity;
+          /*  var totalWithVAT = totalPrice * 1.08;*/
+            var totalWithVAT = totalPrice;// %8 KDV ekleniyor
+
+            $cartItem.find(".price").text(totalWithVAT.toFixed(2) + " TL");
+
+            updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+            var subtotal = 0;
+
+            $(".cart-item").each(function () {
+                var unitPrice = parseFloat($(this).data("price"));
+                var quantity = parseInt($(this).find(".quantity-value").text());
+                subtotal += unitPrice * quantity;
+            });
+
+            var totalWithVAT = subtotal * 1.08; // %8 KDV ekleniyor
+            var shippingCost = 44.99;
+            var totalOrderPrice = totalWithVAT + shippingCost;
+
+            $(".subtotal").text(subtotal.toFixed(2) + " TL");
+            $(".total-price").text(totalOrderPrice.toFixed(2) + " TL");
+        }
+
+        $(".quantity button").click(function () {
+            var $button = $(this);
+            var $span = $button.siblings(".quantity-value");
+            var $cartItem = $button.closest(".cart-item");
+            var currentValue = parseInt($span.text());
+
+            if ($button.hasClass("increase")) {
+                $span.text(currentValue + 1);
+            } else if ($button.hasClass("decrease") && currentValue > 1) {
+                $span.text(currentValue - 1);
+            }
+
+            updatePrice($cartItem);
+        });
+
+        $(".confirm-btn").click(function () {
+            alert("Siparişiniz onaylandı!");
+        });
+
+        updateOrderSummary();
+    });
+</script>
+
+@*<div class="cart-container" style="margin-top:16rem">
+    <div class="seller">
+        <h3>Satıcı: <span class="seller-name">Le Beauty De Paris</span> <span class="rating">9.8</span></h3>
+        <p class="shipping-info">Kargonuzun bedava olması için <strong>35,75 TL</strong> daha ürün ekleyin</p>
+    </div>
+    @foreach (var item in Model.CartItems)
+    {
+     <div class="cart-item">
+        <img src="~/kykİmg/@item.Resims.FirstOrDefault().Name" alt="OrdoVeni Vitamin A Serum">
+        <div class="item-info">
+            <p><strong>@item.ProductName</strong> Vitamin A & Retinol Cilt Bakım Serumu 30ml</p>
+            <p class="delivery-info">🚚 15 saat 26 dakika içinde sipariş verirseniz yarın kargoda!</p>
+            <div class="quantity">
+                <button>-</button>
+                    <span>@item.Quantity</span>
+                <button>+</button>
+            </div>
+        </div>
+        <p class="price"></p>
+    </div>
+    }
+
+
+    <div class="order-summary">
+        <h3>Sipariş Özeti</h3>
+        <p>Ürünün Toplamı: <strong>1.113,85 TL</strong></p>
+        <p>Kargo Toplamı: <strong>44,99 TL</strong></p>
+        <p class="total">Toplam: <strong>1.158,84 TL</strong></p>
+        <button class="confirm-btn">Sepeti Onayla</button>
+    </div>
+</div>
+
+
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".quantity button").click(function () {
+            var $button = $(this);
+            var $span = $button.siblings("span");
+            var currentValue = parseInt($span.text());
+
+            if ($button.text() === "+") {
+                $span.text(currentValue + 1);
+            } else {
+                if (currentValue > 1) {
+                    $span.text(currentValue - 1);
+                }
+            }
+        });
+
+        $(".confirm-btn").click(function () {
+            alert("Siparişiniz onaylandı!");
+        });
+    });
+
+</script>*@
+
+
+@*
+*****************************************************************************@
+<h1 style="margin-top:200px">Sepet Sayfasına Hoşgeldiniz</h1>
+
+<div class="container-fluidd">
+    <div class="row mt-5"> 
+   @if (Model.CartItems.Count > 0)
+     {
+            <div class="col-md-8">
+
+                <div class="text-center">
+                    <h4>Sepet Detay</h4>
+                </div>
+        <table class="table table-condensed">
+                <thead>
+            <tr >
+              <th></th>
+              <th>Marka</th>
+              <th>Fiyat</th>
+              <th>Adet</th>
+              <th>Fiyar +Kdv </th>
+         </tr>
+       
+          </thead>
+                  <tbody>
+
+                    @foreach (var item in Model.CartItems)
+                     {
+                        <tr>
+                                <td>
+                                    <img src="~/kykİmg/@item.Resims.FirstOrDefault().Name" style="width:25rem" />
+                                </td> 
+                                <td>@item.ProductName</td>
+                                <td>@item.Price.ToString("c")</td>
+                                <td>@item.Quantity</td>
+                                <td>@(
+                                      (item.KdvToplamFiyat()).ToString("c")
+                                 )</td> <!-- KDV Hesabı -->
+
+                                <form asp-controller="Cart" asp-action="FromDeleteCart" method="post">
+                                    <input type="hidden" name="cartItemId" value="@item.CartItemId">
+                                    <td><button id="sil" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times fa-fw"></i></button></td>
+                                </form> 
+
+
+                            </tr>
+                        }
+                    </tbody>
+
+        </table> 
+
+
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h4>Sepet Özetim</h4>
+                </div> 
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Sepet Toplam Fiyat</th>
+                            <td>@Model.TotalKdv().ToString("c")</td>
+                        </tr>
+                        @if (Model.TotalKdv() < 200)
+                        {
+                            <tr>
+                                <th>Kargo Ücret</th>
+                                <td>39TL</td>
+                            </tr>
+                            <tr>
+                                <th>Kargo Dahil Ücret</th>
+                                <td></td>:
+                                <td>@Model.KargoDahil</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <th>200 Tl üzeri Alişverişler Kargo Ücretsizdir</th>
+                            </tr> 
+                            <tr>
+                                <td>@Model.TotalKdv().ToString("c")</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+                <div class="text-center">
+                    <a asp-controller="Category" asp-action="Index" asp-route-id="1" class="btn btnpanel-primary">
+                        <i class="fa fa-arrow-circle-left fa-fw"></i>Alış Verişe Devam Et
+                    </a>
+               <a asp-controller="Cart" asp-action="Teslimat" class="btn btnpanel-primary">
+                        <i class="fa fa-arrow-circle-right fa-fw"></i>Devam Et Adres Fatura Alıcı Bilgileri Sayfası
+                    </a>
+                 
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-12 sepetbaslik2">
+                   <h3 class="text-center bg-gradient">Sepetinize Henüz Ürün Eklenmemiş!</h3>
+                    <div class="text-center mt-3">
+                        <a asp-controller="Category" asp-action="Index" asp-route-id="1" class="btn btn-primary">
+                        <i class="fa fa-arrow-circle-left fa-fw"></i>Alışveriş Sayfasına Geri Dön
+                        </a>
+                    </div>
+                   
+                 </div>
+              </div>
+        }
+
+</div>
+</div>
+
+
+
+
+

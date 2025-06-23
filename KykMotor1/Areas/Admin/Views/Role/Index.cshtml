@@ -1,0 +1,63 @@
+﻿@model List<RoleViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoultAreas.cshtml";
+}
+
+<div class="table-responsive" style="padding-top:140px;padding-bottom:50px;">
+
+    <h2 class="adminBaslik text-center bg-black">Rol Listesi Sayfası</h2>
+    <div class="container-xxl">
+
+        <a class="btn btn-primary " style="width:100%" asp-controller="Role" asp-action="RoleCreate">Yeni Rol Ekle</a>
+      
+
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Role Adı</th>
+                <th>Roller İşlemleri</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td data-label="Id">@item.Id</td>
+                    <td data-label="Role Name">@item.Name</td>
+
+                    <td data-label="İşlemler">
+                        <a class="btn btn-primary btn-sm mr-2" href="~/Role/RoleUpdate/@item.Id">Role Düzenle</a>
+                        <button class="btn btn-danger btn-sm mr-2" onclick="confirmDelete('@item.Id')">Role Sil</button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function confirmDelete(Id) {
+            if (confirm('Bu Role silmek istediğinize emin misiniz?')) {
+                $.ajax({
+                    url: '/Role/RoleDelete', // Gidilecek URL
+                    type: 'POST',
+                    data: { Id: Id },
+                    success: function (result) {
+                        alert('Role başarıyla silindi.');
+                        window.location.href = '/Role/Index'; // Başarılı olursa Index sayfasına yönlendir
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Role silinirken bir hata oluştu: ' + error);
+                    }
+                });
+            }
+        }
+    </script>
+

@@ -1,0 +1,78 @@
+﻿@model CategoryListModel
+@{
+    ViewData["Title"] = "AltIkiCategoryIndex";
+}
+
+
+
+@if (Model.SubIkiCategories.Count > 0)
+{
+
+    <div class="table-responsive" style="padding-top:140px;padding-bottom:50px;">
+
+
+      <h1 class="adminBaslik">2.Alt Kategori Ekleme Sayfası </h1>
+        <div class="row">
+          <div class="container">
+                <a class="btn btn-primary btn-block AdminCreateButton" href="~/AltAdminCategoryIki/Create">2.Yeni Alt Kategori Ekle</a>
+           </div>
+           
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>1.Alt Kategori Adı</th>
+                    <th>2.Alt Kategory Adı</th>
+                    <th>Alt Iki Kategori Var mı?</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SubIkiCategories)
+                {
+                    <tr>
+                        <td data-label="Id">@item.Id</td>
+                        <td data-label="1.Kategori Adı">@item.Name</td>
+                        <td data-label="2.Kategori">@(item.SubBirId != null ? item.SubBirId.ToString() : "Kategori Yok")</td>
+                        <td data-label="Alt Bir Kategori Var mı?">@(!item.IsDeleted ? "Alt Iki Kategori Mevcut" : "Alt Iki Kategori Mevcut Değil")</td>
+                        <td data-label="İşlemler">
+
+                            <a class="btn btn-primary btn-sm mr-2" href="~/AltAdminCategoryIki/Edit/@item.Id">Düzenle</a>
+                            <button class="btn btn-danger btn-sm mr-2" onclick="confirmDelete('@item.Id')">Sil</button>
+                            @*     <a class="btn btn-danger btn-sm mr-2" href="~/Admin/Delete/@item.Id">Sil</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        <h4>Ürün Bulunamadı</h4>
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function confirmDelete(Id) {
+        if (confirm('Alt Iki kategoriyi silmek istediğinize emin misiniz?')) {
+            $.ajax({
+                url: '/AltAdminCategoryIki/Delete', // Gidilecek URL
+                type: 'POST',
+                data: { id: Id },
+                success: function (result) {
+                    alert('Alt İki Category Başarıyla Silindi.');
+                    window.location.href = '/AltAdminCategoryIki/Index'; // Başarılı olursa Index sayfasına yönlendir
+                },
+                error: function (xhr, status, error) {
+                    alert('Alt İki Kategori silinirken bir hata oluştu: ' + error);
+                }
+            });
+        }
+    }
+</script>

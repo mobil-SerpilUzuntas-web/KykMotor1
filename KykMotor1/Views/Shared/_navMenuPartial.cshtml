@@ -1,0 +1,23 @@
+﻿@model KykMotorApp.WebIU.Models.CategoryListModel
+
+          <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+            <div class="container" style="height:100px">
+                <ul class="navbar-nav mr-auto">
+                    @foreach (var item in Model.Categories)
+                   {
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">@item.Name</a>
+                       </li>
+                    }
+
+                </ul>
+               
+            </div>
+        </nav>
+
+
+
+
+
+
+    

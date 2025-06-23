@@ -1,0 +1,72 @@
+﻿@model KykMotorApp.WebIU.Models.ProductListModel
+<style>
+    .product-item-top{
+    background:#a9a9a963;
+    }
+</style>
+
+<!-- carousel start -->
+@foreach (var item in Model.Resims)
+{
+    var productName = System.IO.Path.GetFileNameWithoutExtension(item.Name);
+    <div>
+        <div class="text-center product-item">
+            <div class="product-item-top">
+                <img alt="" class="img-responsive" src="~/kykİmg/@item.Name" style="max-height:250px">
+                <div class="mask"></div>
+                <ul class="list-unstyled list-inline">
+                    <li><a href="~/Home/Detay/@item.ProductId"><i class="fa fa-link fa-fw"></i></a></li>
+                    <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                </ul>
+            </div>
+            <div class="product-item-inner">
+                <h3 class="product-title">
+@*                    <a href="~/Home/Detay/@item.ProductId">ResimID @item.Id + ProducID @item.ProductId</a>*@
+                </h3>
+
+                <h3 class="product-title"><a href="~/Home/Detay/@item.ProductId">@productName</a></h3>
+            </div>
+        </div>
+    </div>
+}
+
+@*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+       let captionText = document.getElementById("caption");
+   
+      let fileName = fullPath.substring(fullPath.lastIndexOf('/') + 1);
+      fileName = fileName.substring(0, fileName.lastIndexOf('.')); // Uzantıyı kaldır
+      captionText.innerHTML = fileName;
+</script>*@
+
+
+
+@*@model KykMotorApp.WebIU.Models.ProductListModel
+<!-- carousel start -->
+@foreach (var item in Model.Resims)
+   {
+        <div>
+            <div class="text-center product-item">
+                <div class="product-item-top">
+                
+ 
+                    <img alt="" class="img-responsive" src="~/kykİmg/@item.Name">
+   
+                    <div class="mask"></div>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-item-inner">
+                    <h3 class="product-title"><a href="~/Home/Detay/@item.ProductId">ResimID @item.Id + ProducID @item.ProductId</a></h3>
+                    <h3 class="product-title"><a href="#">@item.Name</a></h3>
+          
+                </div>
+            </div>
+        </div>
+    }*@
+
+
+<!-- carousel end -->
+

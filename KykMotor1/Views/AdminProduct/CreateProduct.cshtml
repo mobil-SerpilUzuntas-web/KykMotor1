@@ -1,0 +1,332 @@
+﻿@model ProductModel
+
+@{
+    ViewData["Title"] = "CreateProduct";
+}
+<style>
+    .sutun {
+        padding-top: 185px;
+        padding-bottom: 50px;
+        display: flex;
+        justify-content: center;
+    }
+
+   .form-group {
+
+       margin-bottom:15px;
+    }
+
+    form{
+        display: grid;
+        background-color: #69696947;
+        padding-top: 20px;
+        padding-bottom: 14px;
+    }
+
+    #home-content {
+      background-color:lavenderblush
+    }
+
+    .kapsa{
+        text-align:center;
+    }
+
+    .formbutton{
+        margin-top:12px;
+    }
+
+
+  .fc {
+        border: 2px solid #0000006b;
+        height:45px;
+   }
+</style>
+
+<section id="home-content">
+<div class="row sutun">
+        <div class="col-md-4 kapsa">
+                <h1>Burası Admin Product Create Yeni Sayfa</h1> 
+            <form asp-controller="AdminProduct" asp-action="CreateProduct" method="post" >
+
+                <div class="form-group" >
+                    <label asp-for="Name" class="col-md-12 col-form-label"></label>
+                    <div class="col-md-12 ">
+                        <input asp-for="Name" class="form-control fc" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price" class="col-md-12 col-form-label"></label>
+                    <div class="col-md-12">
+
+                        <input asp-for="Price" class="form-control fc" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="KoliAdet" class="col-md-12 col-form-label"></label>
+                    <div class="col-md-12">
+                        <input asp-for="KoliAdet" class="form-control fc" />
+                        <span asp-validation-for="KoliAdet" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Kategori Dropdown -->
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="col-md-12 col-form-label">Kategori Seçiniz</label>
+                    <div class="col-md-12">
+                        <select asp-for="CategoryId" class="form-control fc" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Sub Bir Dropdown -->
+                <div class="form-group">
+                    <label asp-for="SubBirId" class="col-md-12 col-form-label">Sub Bir Kategori Seçiniz</label>
+                    <div class="col-md-12">
+                        <select asp-for="SubBirId" class="form-control fc" asp-items="@(new SelectList(Model.SubBirCategories, "Id", "Name"))">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                        <span asp-validation-for="SubBirId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Sub İki Category Dropdown -->
+                <div class="form-group">
+                    <label asp-for="SubIkiId" class="col-md-12 col-form-label">Sub İki Kategori Seçiniz</label>
+                    <div class="col-md-12">
+                        <select asp-for="SubIkiId" class="form-control fc" asp-items="@(new SelectList(Model.SubIkiCategories, "Id", "Name"))">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                        <span asp-validation-for="SubIkiId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description" class="col-md-12 col-form-label"></label>
+                    <div class="col-md-12">
+                        <input asp-for="Description" class="form-control fc" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12 offset-md-2">
+                        <button  type="submit" class="btn btn-primary btn-lg btn-block formbutton">Ekle</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+@*@model ProductModel
+@{
+    ViewData["Title"] = "CreateProduct";
+}
+<div class="container">
+    <div class="row" style="padding-top:185px;padding-bottom:50px">
+        <div class="col-md-8">
+            <form asp-controller="Admin" asp-action="CreateProduct" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label asp-for="Name" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Price" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="KoliAdet" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="KoliAdet" class="form-control" />
+                    </div>
+                </div>
+
+                <!-- Kategori Dropdown -->
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="col-md-2 col-form-label">Kategori Seçiniz</label>
+                    <div class="col-md-10">
+                        <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Sub Bir Dropdown -->
+                <div class="form-group">
+                    <label asp-for="SubBirId" class="col-md-2 col-form-label">Kategori Seçiniz</label>
+                    <div class="col-md-10">
+                        <select asp-for="SubBirId" class="form-control" asp-items="@(new SelectList(Model.SubBirCategories, "Id", "Name"))">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Sub İki Category Dropdown -->
+                <div class="form-group">
+                    <label asp-for="SubIkiId" class="col-md-2 col-form-label">Kategori Seçiniz</label>
+                    <div class="col-md-10">
+                        <select asp-for="SubIkiId" class="form-control" asp-items="@(new SelectList(Model.SubIkiCategories, "Id", "Name"))">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="Description" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Description" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10 offset-md-2">
+                        <button type="submit" value="Gönder" class="btn btn-primary">Gönder</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Resim Seçiniz -->
+@*  <div class="form-group">
+                    <label class="col-md-2 col-form-label">Resim Seçiniz</label>
+                    <div class="col-md-10">
+                        <input type="file" asp-for="Resims" class="form-control" multiple />
+                    </div>
+                </div>*@
+
+@*@model ProductModel
+@{
+    ViewData["Title"] = "CreateProduct";
+}
+<div class="container">
+    <div class="row" style="padding-top:185px;padding-bottom:50px">
+        <div class="col-md-8">
+            <form asp-controller="Admin" asp-action="CreateProduct" method="post">
+
+                <div class="form-group-row">
+                    <label asp-for="Name" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Name" value="" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label asp-for="Price" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Price" value="" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label asp-for="KoliAdet" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="KoliAdet" value="" class="form-control" />
+                    </div>
+                </div>
+
+                <!-- Kategori Dropdown -->
+                <div class="form-group-row">
+                    <label asp-for="CategoryId" class="col-md-2 col-form-label">Kategori Seçiniz</label>
+                   <div class="col-md-10">
+                    <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
+                        <option value="">Kategori Seçiniz</option>
+                    </select>
+                    </div>
+                </div>
+                 <!-- Sub Bir Dropdown -->
+                <div class="form-group-row">
+                    <label asp-for="SubBirId" class="col-md-2 col-form-label">Kategori Seçiniz</label>
+                   <div class="col-md-10">
+                        <select asp-for="SubBirId" class="form-control" asp-items="@(new SelectList(ViewBag.SubBirCat, "Id", "Name"))">
+                        <option value="">Kategori Seçiniz</option>
+                    </select>
+                    </div>
+                </div>
+                <!-- Sub İki Category Dropdown -->
+                  <div class="form-group-row">
+                    <label asp-for="SubBirId" class="col-md-2 col-form-label">Kategori Seçiniz</label>
+                   <div class="col-md-10">
+                        <select asp-for="SubIkiId" class="form-control" asp-items="@(new SelectList(ViewBag.SubIkiCat, "Id", "Name"))">
+                        <option value="">Kategori Seçiniz</option>
+                    </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group-row">
+                    <label  class="col-md-2 col-form-label">Resim Seçiniz</label>
+                    <div class="col-md-10">
+                        <input asp-for="Resims.FirstOrDefault().Name" value="" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <label asp-for="Description" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input type="text" name="Description" value="" />
+                    </div>
+                </div>
+
+
+                <div class="form-group-row">
+                    <div class="col-md-10 offset-md-2">
+                        <button type="submit" value="Gönder" class="btn btn-primary">Gönder</button>
+                    </div>
+
+               </div> 
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+*@
+
+@*
+<h1>Create Product</h1>
+<hr />
+<div class="row" style="padding-top:50px;padding-bottom:50px">
+   <div class="col-md-8">
+
+        <form asp-controller="Admin" asp-action="CreateProduct" method="post">
+
+          <div class="form-group-row">
+              <label  class="col-md-2 col-form-label">Ürün Adı</label>
+              <div class="col-md-10">
+              <input type="text" name="Category.Name" value="" class="form-control"/>
+             </div>
+          </div>
+
+          <button type="submit">Gönder </button> 
+        </form>
+   </div> 
+
+</div>*@
+
+
+
+
+

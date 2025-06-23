@@ -1,0 +1,144 @@
+﻿
+
+    <!DOCTYPE html>
+    <html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            /* Number input'un default oklarını kaldır */
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+
+                input[type="number"]::-webkit-outer-spin-button,
+                input[type="number"]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+            /* Input ve butonları yan yana hizala */
+            .quantity-container {
+                display: flex;
+                align-items: center;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                overflow: hidden;
+                width: 120px;
+            }
+
+                .quantity-container button {
+                    background-color: #007bff;
+                    color: white;
+                    border: none;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                    .quantity-container button:hover {
+                        background-color: #0056b3;
+                    }
+
+                .quantity-container input {
+                    width: 50px;
+                    text-align: center;
+                    border: none;
+                    outline: none;
+                    font-size: 16px;
+                }
+        </style>
+    </head>
+    <body>
+
+        <div class="padding15">
+            <form method="post" class="form-inline">
+                <input type="hidden" name="ProductId" value="@Model.Id">
+
+                <div class="form-group qty">
+                    <div class="quantity-container">
+                        <button type="button" id="decreaseBtn">−</button>
+                        <input id="quantityInput" type="number" value="1" min="1" step="1">
+                        <button type="button" id="increaseBtn">+</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-cart-plus fa-fw"></i> Sepete Ekle
+                </button>
+            </form>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $("#increaseBtn").click(function () {
+                    let currentValue = parseInt($("#quantityInput").val());
+                    $("#quantityInput").val(currentValue + 1);
+                });
+
+                $("#decreaseBtn").click(function () {
+                    let currentValue = parseInt($("#quantityInput").val());
+                    if (currentValue > 1) {
+                        $("#quantityInput").val(currentValue - 1);
+                    }
+                });
+
+                $("#quantityInput").on("change", function () {
+                    let value = $(this).val();
+                    if (value < 1) {
+                        $(this).val(1);
+                    }
+                });
+            });
+        </script>
+
+    </body>
+</html>
+
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="padding15">
+    <form method="post" class="form-inline">
+        <input type="hidden" name="ProductId" value="@Model.Id">
+
+        <div class="form-group qty">
+            <div class="input-group">
+                <span class="input-group-addon">Adet</span>
+                   <p id="quantityInput">0</p>
+                <input  type="number" size="10" class="form-control" value="1" min="1" step="1">
+                <button type="button" id="increaseBtn">+</button>
+                <button type="button" id="decreaseBtn">-</button>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-cart-plus fa-fw"></i> Sepete Ekle</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#increaseBtn").click(function () {
+            let currentValue = parseInt($("#quantityInput").val());
+            $("#quantityInput").val(currentValue + 1);
+        });
+
+        $("#decreaseBtn").click(function () {
+            let currentValue = parseInt($("#quantityInput").val());
+            if (currentValue > 1) { // Minimum 1 olmalı
+                $("#quantityInput").val(currentValue - 1);
+            }
+        });
+
+        $("#quantityInput").on("change", function () {
+            let value = $(this).val();
+            if (value < 1) {
+                $(this).val(1); // Minimum değeri 1 olarak ayarla
+            }
+        });
+    });
+</script>-->
+
+
+
+</body>
+</html>

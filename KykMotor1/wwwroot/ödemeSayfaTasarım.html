@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ödeme Sayfası</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        
+
+        .header-logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .card-header {
+            background-color: white;
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #f60;
+        }
+
+        .btn-orange {
+            background-color: #f60;
+            color: white;
+            border: none;
+        }
+
+            .btn-orange:hover {
+                background-color: #d94c00;
+            }
+
+        .toggle-button {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            border: none;
+            justify-content: center;
+            cursor: pointer;
+           
+        }
+
+            .toggle-button:hover {
+                background-color: #0056b3;
+            }
+
+    
+        .colon {
+            background: antiquewhite;
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: space-evenly;
+            align-items: center;
+            height: 6vh;
+            margin: 0;
+        }
+        
+
+            .colon p, .colon button {
+                margin: 0; /* İçeriklerin etrafındaki boşlukları sıfırlar */
+            }
+
+        /* Ürün resimleri stil */
+        /*.product-image {
+          
+        }*/
+        .product {
+            text-align: center; /* Resmin ve fiyatın ortalanmasını sağlar */
+            margin-bottom: 15px; /* Ürünler arasında boşluk bırakır */
+        }
+
+        .product-image {
+            max-width: 100%; /* Resmin genişliğini konteynerine göre ayarlar */
+            max-height: 100%; /* Resmin yüksekliğini konteynerine göre ayarlar */
+            object-fit: contain; /* Resmin orantısını korur */
+            /*width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 10px; */ /* Orantılı şekilde boyutlandırma yapar */
+        }
+
+        .product-price {
+            margin-top: 10px; /* Resim ile fiyat arasına boşluk bırakır */
+            font-size: 16px; /* Fiyat yazısının boyutunu ayarlar */
+            font-weight: bold; /* Fiyat yazısını kalın yapar */
+            color: #333; /* Fiyat rengini belirler */
+        }
+        .col {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .product .imgContainer {
+            border: solid 0.1rem darkgray;
+            width: 8rem;
+            height: 10rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+    /*    *************************************************************/
+        .container {
+            width: 72vw; /* Ekranın genişliğinin %60'ı */
+            /*  height: 40vh;  Ekranın yüksekliğinin %40'ı */
+            max-width: 90vw; /* En fazla ekranın %80'ini kaplasın */
+            min-width: 20vw; /* En az ekranın %20'si kadar olsun */
+            /* max-height: 70vh;  Çok büyük olmasın */
+            /* min-height: 30vh;  Çok küçük olmasın */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .address-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .address-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+            .address-card:hover {
+                transform: scale(1.05);
+            }
+
+        .add-address {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            background: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .adresHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border: solid 0.2px var(--bs-secondary);
+            border-radius: 7px;
+            background: antiquewhite;
+            padding: 0.8rem;
+        }
+        .adresHeader1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border: solid 0.2px var(--bs-secondary);
+            padding: 0.8rem;
+            background: antiquewhite;
+            border-radius: 7px;
+        }
+        .adresButton {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .artiiconButton {
+            width: 16rem;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: anchor-center;
+            border: none;
+        }
+
+            .artiiconButton .fa-plus {
+                color: lightcoral;
+                font-size: 1.5rem;
+            }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .card-header .fa-mobile-screen-button {
+                margin-right: 0.2rem;
+            }
+
+        .headerButton1 {
+            padding: 0.5rem 0;
+            box-sizing: border-box;
+        }
+
+        .radio-button label {
+            margin-left: 0.3rem;
+        }
+      /*  ***********************************************************************/
+        /* The container */
+        .container1 {
+            display: inline;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default radio button */
+            .container1 input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+        /* Create a custom radio button */
+        .checkmark {
+            position: absolute;
+            top: 0.2rem;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container1:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .container1 input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        .container1 input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .container1 .checkmark:after {
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-4" >
+        <div class="text-center mb-4">
+            <span class="header-logo">KykMotor</span>
+        </div>
+
+        <div class="row">
+            <!-- Adres ve Ödeme Seçenekleri -->
+            <div class="col-md-9">
+                <div class="col-md-12" style="display:flex">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <!--<div class="card-header text-orange">Adres Bilgileri</div>-->
+                            <div class="card-body">
+                                <p><strong>Adres Bilgileri</strong></p>
+                                <p>Aktaş Mah (Pınarbaşı Köyü) dsdsdsssssssssssssssss <br>02000 - Adıyaman/Çelikhan</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <!--<div class="card-header text-orange">Adres Bilgileri</div>-->
+                            <div class="card-body">
+                                <p><strong>Ödeme Seçenekleri</strong></p>
+                                <p>Ödemeleri Şu An için Sadece Eft Üzerinden Alıyoruz</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="row" style="display:flex">
+                        <div class="col-md-12">
+                            <!-- İlk Satır -->
+                            <div class="colon">
+                                <p>Sepetimdeki Ürünler</p>
+                                <button id="toggleButton" class="toggle-button">
+                                    <i class="fa-solid fa-angle-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div id="imageRow" class="col">
+                                    <div class="product">
+                                        <div class="imgContainer">
+                                            <img src="kykİmg/eldivenEr.jpg" alt="Ürün 1" class="product-image">
+                                        </div>
+                                        <p class="product-price">Fiyat: 100 TL</p>
+                                    </div>
+
+                                    <div class="product">
+                                        <div class="imgContainer">
+                                            <img src="kykİmg/eldivenp1.jpg" alt="Ürün 1" class="product-image">
+                                        </div>
+                                        <p class="product-price">Fiyat: 100 TL</p>
+                                    </div>
+                                    <div class="product">
+                                        <div class="imgContainer">
+                                            <img src="kykİmg/eldivenS.jpg" alt="Ürün 1" class="product-image">
+                                        </div>
+                                        <p class="product-price">Fiyat: 100 TL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--<div class="alert alert-warning">
+
+    </div>-->
+              <!--<div class="col-md-12">
+                  <div class="row">
+                      <div>
+                          <div class="adresHeader1">
+                            
+                              <p>Kurumsal Fatura Adresi eklemek için "Kurumsal Adres Ekle" </p>
+                              <button class="headerButton1 btn btn-orange w-25"><i class="fa-solid fa-plus"></i>Kurumsal Adres Ekle</button>
+                          </div>
+                      </div>
+                     
+                  </div>
+              </div>-->
+             
+                <div class="col-md-12">
+                    <div class="row">
+                         <!--Checkbox ve etiket--> 
+                        <div>
+                            <div class="adresHeader">
+                                <h5>Adres Seçimi</h5>
+                                <button class="buttonHeader2 btn btn-orange w-35"><i class="fa-solid fa-plus"></i>Faturamı Aynı Adrese Gönder</button>
+                            </div>
+                        </div>
+                      
+                        <div class="address-grid">
+                            <div class="address-card add-address">+ Ev Adresi Ekle</div>
+                            <div class="address-card">
+
+                                <div class="adresSecim" style="display:flex;justify-content:space-between;margin-bottom:1rem">
+                                    <label class="container1">
+                                        Ev Adresi
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark active"></span>
+                                    </label>
+                                    <a href="Cart/Index">Düzenle</a>
+                                </div>
+
+                                <div class="card-header">
+
+                                    <p><strong>Serpil Uzuntaş</strong></p>
+                                    <p><i class="fa-solid fa-mobile-screen-button"></i><strong>05457896678</strong></p>
+                                </div>
+                                <p>Sarıkapılar/Denti Sok/Kapaklı Mah/45/58</p>
+                                <p>Merkez, Denizli</p>
+                            </div>
+                            <div class="address-card">
+                                <div class="adresSecim" style="display:flex;justify-content:space-between;margin-bottom:1rem">
+                                    <label class="container1">
+                                        İş Adresi
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <a href="Cart/Index">Düzenle</a>
+                                </div>
+                             
+                          <div class="card-header">
+                                    <p><strong>Ayşe Uzun</strong></p>
+                                    <p><i class="fa-solid fa-mobile-screen-button"></i><strong>05457896678</strong></p>
+                                </div>
+                                <p>Kayalar Cadde/Denti Sok/Kapaklı Mah/45/58</p>
+                                <p>Merkez, Ankara</p>
+                            </div>
+                            <div class="address-card">
+                                <div class="adresSecim" style="display:flex;justify-content:space-between;margin-bottom:1rem">
+                                    <label class="container1">
+                                        Ev Adresi
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <a href="Cart/Index">Düzenle</a>
+                                </div>
+
+                                <div class="card-header">
+                                    <p><strong>Ayşe Uzun</strong></p>
+                                    <p><i class="fa-solid fa-mobile-screen-button"></i>05457896678</p>
+                                </div>
+                                <p>Kayalar Cadde/Denti Sok/Kapaklı Mah/45/58</p>
+                                <p>Merkez, Ankara</p>
+                            </div>
+                            </div>
+                    </div>
+
+                </div>
+ 
+            </div>
+
+            <!-- Sipariş Özeti -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">Sipariş Özeti</div>
+                    <div class="card-body">
+                        <p>Ürünün Toplamı: <span class="float-end">27.514,25 TL</span></p>
+                        <p>Kargo Toplamı: <span class="float-end">44,99 TL</span></p>
+                        <hr>
+                        <p><strong>Toplam: <span class="highlight">27.559,24 TL</span></strong></p>
+                        <button class="btn btn-orange w-100">Kaydet ve Devam Et</button>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">
+                                Ön Bilgilendirme Koşulları'nı ve Mesafeli Satış Sözleşmesi'ni okudum, onaylıyorum.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

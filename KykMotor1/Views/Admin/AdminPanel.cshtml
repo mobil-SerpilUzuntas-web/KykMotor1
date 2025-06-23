@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewData["Title"] = "AdminPanel";
+}
+
+@*Login yapılınca eger adminse anmin panele gönderilecek ve bu sayfa açılacak bu sayfa 
+Adminin ilk girdigin de gördügü sayfa ve bu sayfada bir tane navbar ve orta kısım olsun yap admine gelen mesajlar
+*@
+<section id="home-content" style="padding-top:80px">
+
+    <div id="home-intro" class="container padding35">
+        <h1 class="row text-center">Admin Panel</h1>
+       @* <a class="btn btn-primary btn-sm mr-2" href="~/admin/urunlerlistesi/">Admin Ürün Listesi</a>*@
+        <a class="btn btn-primary btn-sm mr-2" href="~/AdminProduct/Index/">Admin Ürün Listesi</a>
+        <a class="btn btn-primary btn-sm mr-2" href="~/AdminCategory/Index/">Admin Categori</a>
+        <a class="btn btn-primary btn-sm mr-2" href="~/AltAdminCategoriBir/Index/">Admin Birinci Alt Kategory</a>
+        <a class="btn btn-primary btn-sm mr-2" href="~/AltAdminCategoryIki/Index/">Admin İkinci Alt Kategory</a>
+    @*    <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <!-- Diğer navbar öğeleri -->
+                <!-- Bildirim İkonu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:blue">
+                        <i class="fas fa-bell"></i> <!-- Bildirim ikonu (font-awesome kullanılıyor) -->
+                        <span style="background-color:darkgoldenrod" id="notificationCount" class="badge badge-danger">0 Bildiriminiz var</span> <!-- Bildirim sayısını gösterecek badge -->
+                    </a>
+
+                    @* <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown" id="notificationDropdown">
+                    <a class="dropdown-item" href="~/Admin/BayiBasvuruOku">Tüm Bildirimleri Görüntüle</a>
+                    </div>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
+                    <a class="dropdown-item" href="~/Admin/BayiBasvuruOku">Tüm Bildirimleri Görüntüle</a>
+                    </div>
+                </li>
+            </ul>
+        </div>*@
+</div>
+</section>
+
+@*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // Bildirim sayısını almak için Ajax çağrısı
+        function updateNotificationCount() {
+            $.ajax({
+                url: '/Admin/GetUnreadNotificationsCount',
+                type: 'GET',
+                success: function (count) {
+                    $('#notificationCount').text(count); // bu deger yukarda ki yazılacak sayfadaki <li class="nav-item dropdown">  <span style="background-color:red" id="notificationCount" class="badge badge-danger">0</span>
+                }
+            });
+        }
+
+        // Sayfa yüklendiğinde bildirim sayısını güncelle
+        updateNotificationCount();
+
+        // İsteğe bağlı: belirli aralıklarla (örneğin 30 saniyede bir) bildirim sayısını güncellemek istersen:
+        setInterval(updateNotificationCount, 30000); // 30 saniyede bir sayıyı günceller
+
+        // Bildirim ikonuna tıklandığında bildirimleri id buna tıklayınca  notificationDropdow bir tane fonctionn
+        //çalıştırıyor ve bir ajax istegi gönderiyor nereye url bu olan /Admin/MarkNotificationsAsRead metot type  'POST'
+        //gönderdigi url post dan dönen degeri eger success ise bir fonksiyon başlatıyor ve yukarda ki id bu olan input a#notificationCount'
+        //text sıfır yazıyor yani bildirim 0 gözüküyor ve sayfayı bu href yönlendiriyor '/Admin/BayiBasvuruOku';
+        $('#notificationDropdown').click(function () {
+            $.ajax({
+                url: ' /Admin/MarkNotificationsAsRead',
+                type: 'POST',
+                success: function () {
+                    // Bildirimleri başarıyla okunmuş olarak işaretledikten sonra ne yapılacaksa
+                    $('#notificationCount').text(0); // Örneğin, sayaç sıfırlanabilir
+                    window.location.href = '/Admin/BayiBasvuruOku'; // Sayfaya yönlendir
+
+                }
+            });
+        });
+    });
+</script>*@
+
+
+

@@ -1,0 +1,223 @@
+﻿@model ProductListModel
+@{
+    ViewData["Title"] = "DetayCategorySlider";
+}
+
+<div class="col-md-9">
+    <div class="row">
+         <!-- related products start -->
+    <div class="col-md-12">
+   
+        <div class="text-center">
+            <h3>RELATED <b>PRODUCTS</b></h3>
+        </div>
+   
+       <div id="products-carousel" class="owl-carousel">
+    @foreach (var item in Model.Resims)
+    {
+        <div>
+            <div class="text-center product-item">
+                <div class="product-item-top">
+                    <img alt="" class="img-responsive" src="~/kykİmg/@item.Name">
+                    <div class="mask"></div>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-item-inner">
+                   <h3 class="product-title"><a href="~/Home/Detay/@item.Id">@item.Id</a></h3>
+                   <h3 class="product-title"><a href="#">@item.Name</a></h3>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+                    <!-- carousel end -->
+
+                </div>
+                @*             <div class="product-item-inner">
+                        <h3 class="product-title"><a href="#">Photo Camera</a></h3>
+                        <p class="product-price">$129</p>
+                    </div>
+                </div>
+            </div>
+   
+            <div>
+                <div class="text-center product-item">
+                    <div class="product-item-top">
+                        <img alt="" class="img-responsive" src="images/products/product3_thumb.jpg">
+                        <div class="mask"></div>
+                        <ul class="list-unstyled list-inline">
+                            <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-item-inner">
+                        <h3 class="product-title"><a href="#">Sofa</a></h3>
+                        <p class="product-price">$519</p>
+                    </div>
+                </div>
+            </div>
+   
+            <div>
+                <div class="text-center product-item">
+                    <div class="product-item-top">
+                        <img alt="" class="img-responsive" src="images/products/product4_thumb.jpg">
+                        <div class="mask"></div>
+                        <ul class="list-unstyled list-inline">
+                            <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-item-inner">
+                        <h3 class="product-title"><a href="#">Hand Bag</a></h3>
+                        <p class="product-price">$99</p>
+                    </div>
+                </div>
+            </div>
+   
+            <div>
+                <div class="text-center product-item">
+                    <div class="product-item-top">
+                        <img alt="" class="img-responsive" src="images/products/product1_thumb.jpg">
+                        <div class="mask"></div>
+                        <ul class="list-unstyled list-inline">
+                            <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-item-inner">
+                        <h3 class="product-title"><a href="#">Photo Camera</a></h3>
+                        <p class="product-price">$29</p>
+                    </div>
+                </div>
+            </div>
+   
+            <div>
+                <div class="text-center product-item">
+                    <div class="product-item-top">
+                        <img alt="" class="img-responsive" src="images/products/product2_thumb.jpg">
+                        <div class="mask"></div>
+                        <ul class="list-unstyled list-inline">
+                            <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-item-inner">
+                        <h3 class="product-title"><a href="#">Wood Chair</a></h3>
+                        <p class="product-price">$29</p>
+                    </div>
+                </div>
+            </div>*@
+   
+   
+                            <!-- related products end -->
+  @*   <div class="col-md-12">
+
+    <div class="text-center">
+        <h3>KATEGORİ <b>Adı gelecek</b></h3>
+    </div>
+
+    <div id="products-carousel" class="owl-carousel">
+        
+        <div>
+            <div class="text-center product-item">
+              
+               <div class="product-item-top">
+                            @foreach (var item in Model.Resims)
+                            {
+                            <img alt="" class="img-responsive" src="~/kykİmg/@item.Name">
+                              <p>@item.Name</p>
+                            }
+                    <div class="mask"></div>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                    </ul>
+                </div>
+               
+                
+                <div class="product-item-inner">
+                    <h3 class="product-title"><a href="#">Photo Camera</a></h3>
+                    <p class="product-price">$129</p>
+                </div>
+            </div>
+        </div>
+
+  @*      <div>
+            <div class="text-center product-item">
+                <div class="product-item-top">
+                    <img alt="" class="img-responsive" src="~/edura/images/products/product3_thumb.jpg">
+                    <div class="mask"></div>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-item-inner">
+                    <h3 class="product-title"><a href="#">Sofa</a></h3>
+                    <p class="product-price">$519</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="text-center product-item">
+                <div class="product-item-top">
+                    <img alt="" class="img-responsive" src="~/edura/images/products/product4_thumb.jpg">
+                    <div class="mask"></div>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-item-inner">
+                    <h3 class="product-title"><a href="#">Hand Bag</a></h3>
+                    <p class="product-price">$99</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="text-center product-item">
+                <div class="product-item-top">
+                    <img alt="" class="img-responsive" src="~/edura/images/products/product1_thumb.jpg">
+                    <div class="mask"></div>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-item-inner">
+                    <h3 class="product-title"><a href="#">Photo Camera</a></h3>
+                    <p class="product-price">$29</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="text-center product-item">
+                <div class="product-item-top">
+                    <img alt="" class="img-responsive" src="~/edura/images/products/product2_thumb.jpg">
+                    <div class="mask"></div>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cart-plus fa-fw"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-item-inner">
+                    <h3 class="product-title"><a href="#">Wood Chair</a></h3>
+                    <p class="product-price">$29</p>
+                </div>
+            </div>
+        </div>*@
+
+    </div>
+    <!-- carousel end -->
+
+</div>
+
+
+

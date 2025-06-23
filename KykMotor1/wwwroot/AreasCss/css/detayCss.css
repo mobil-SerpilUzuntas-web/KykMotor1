@@ -1,0 +1,77 @@
+﻿
+
+
+.user-details-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.user-details-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+    .user-details-card h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+
+.user-detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+    .user-detail-item label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .user-detail-item span {
+        color: #777;
+    }
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+.btnBaslik:hover {
+    background-color: #0056b3;
+}
+.btnBaslik {
+    display: block;
+    width: 60% ;
+    padding: 13px ;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.btn-center {
+    display: flex;
+    justify-content: center; /* Yatayda ortalamak için */
+    align-items: center; /* Dikeyde ortalamak için */
+}

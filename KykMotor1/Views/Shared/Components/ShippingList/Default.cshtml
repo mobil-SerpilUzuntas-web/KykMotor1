@@ -1,0 +1,25 @@
+﻿@model BuyerModel
+
+
+@foreach (var item in Model.shippingAddres)
+{
+    <div class="address-card">
+
+        <div class="adresSecim" style="display:flex;justify-content:space-between;margin-bottom:1rem">
+            <label class="container1">
+                Ev Adresi
+                <input type="radio" name="radio">
+                <span class="checkmark active"></span>
+            </label>
+            <a href="Cart/Index">Düzenle</a>
+        </div>
+
+        <div class="card-header">
+
+            <p><strong>@item.ContactName</strong></p>
+            <p><i class="fa-solid fa-mobile-screen-button"></i><strong>05457896678</strong></p>
+        </div>
+        <p>@item.Description</p>
+        <p>@item.City / @item.Country</p>
+    </div>
+}       

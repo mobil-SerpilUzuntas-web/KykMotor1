@@ -1,0 +1,76 @@
+﻿@model ResimModel
+<style>
+    .kutu{
+        padding:200px;
+    }
+</style>
+
+
+@{
+    ViewData["Title"] = "ResimEkle";
+}
+
+<section id="home-content">
+ <div class="Pimgsutun">
+        <h3>Yüklenmiş Resimler</h3>
+   <div class="row roww">
+
+        @* @if (Model.Resims != null && Model.Resims.Count > 0)
+         {*@
+                 @foreach (var item in Model.Resims)
+                 {
+                     <div class="column">
+                         <img src="/kykİmg/@item.Name" style="width:100%">
+                         <p>@item.Name</p>
+                        <button class="btn btn-danger btn-sm mr-2 imgFileButon1" onclick="confirmDelete('@item.Id')">Resmi Sil</button>
+         
+                     </div>
+                 }
+        @* }*@
+       @* else
+        {
+            <p>Bu ürüne ait yüklenmiş resim bulunmamaktadır.</p>
+        }*@
+        </div>
+        <div class="row Ps2">
+            <div class="col-md-4 Pimgcontent">
+                <div class="col-md-12 ">
+                    <form class="Pfileform" asp-controller="Admin" asp-action="ResimEkle" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="ProductId" />
+                        <table>
+                            <tr>
+                                <td>Resim Yükle</td>
+                                <td><input type="file" name="file" /></td>
+                            </tr>
+                        </table>
+                        <button type="submit" class="btn btn-primary imgfileButon">Yükle</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+ </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function confirmDelete(productId) {
+        if (confirm('Bu resmi silmek istediğinize emin misiniz?')) {
+            $.ajax({
+                url: '/Admin/DeleteImages', // Gidilecek URL
+                type: 'POST',
+                data: { id: productId },
+                success: function (result) {
+                    alert('Resim başarıyla silindi.');
+                    window.location.href = '/Admin/Index'; // Başarılı olursa Index sayfasına yönlendir
+                },
+                error: function (xhr, status, error) {
+                    alert('Resim silinirken bir hata oluştu: ' + error);
+                }
+            });
+        }
+    }
+</script>

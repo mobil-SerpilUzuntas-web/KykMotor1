@@ -1,0 +1,163 @@
+﻿@model BayiBasvuruModel
+
+@*****************************************************************************************************@
+<style>
+    
+    .containerBayiBasvuruIc{
+        background-color: rgb(98 63 63 / 53%);
+        padding-bottom:2em;
+    
+    }
+
+    .yeniBayiBasvuru{
+        background-image: url('/images/arkaplanslider/m1.jpg');
+        background-size: cover; /* Resmi div'e sığdırır */
+        background-position: center; /* Resmi div'in ortasına hizalar */
+        background-repeat: no-repeat; /* Resmin tekrar etmesini engeller */
+        padding-bottom:3em;
+        padding-top:10em;
+    }
+
+    .form-control{
+        height:3.3em;
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 2.1rem;
+        height: 6.5rem;
+        padding: 0.5rem 1.5rem;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 1.25rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+
+        .btn:hover {
+            background-color: firebrick;
+        }
+
+    .form-group label{
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 0;
+        font-weight: bold;
+        font-size: 2rem;
+         color:white;
+      
+        margin-top: 1.2rem;
+    }
+
+        .form-group label{
+           
+        }
+
+
+        .textAdres .form-control{
+        height:200px;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Bayi Başvuru Formu";
+}
+
+          <div class="yeniBayiBasvuru">
+
+           
+             <div class="containerBayiBasvuruIc container">
+           
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+
+                <form asp-controller="Account" asp-action="BayiBasvuru" method="post">
+
+                    <div class="form-group">
+                        <label for="AdiSoyadi">Adı Soyadı</label>
+                        <input asp-for="AdiSoyadi" class="form-control" placeholder="Adınızı ve Soyadınızı giriniz" />
+                        <span asp-validation-for="AdiSoyadi" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Telefon">Telefon</label>
+                        <input asp-for="Telefon" class="form-control" placeholder="Telefon Numaranız" />
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Email Adresiniz" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="FirmaAdi">Firma Adı</label>
+                        <input asp-for="FirmaAdi" class="form-control" placeholder="Firma Adınız" />
+                        <span asp-validation-for="FirmaAdi" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="FirmaUnvani">Firma Ünvanı</label>
+                        <input asp-for="FirmaUnvani" class="form-control" placeholder="Firma Ünvanınız" />
+                        <span asp-validation-for="FirmaUnvani" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Şehir">Şehir</label>
+                        <select asp-for="Şehir" class="form-control">
+                            <option value="">Şehir Seçiniz</option>
+                            <option value="İstanbul">İstanbul</option>
+                            <option value="Ankara">Ankara</option>
+                            <option value="İzmir">İzmir</option>
+                            <!-- Diğer şehirler -->
+                        </select>
+                        <span asp-validation-for="Şehir" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="VergiDairesi">Vergi Dairesi</label>
+                        <input asp-for="VergiDairesi" class="form-control" placeholder="Vergi Dairesi" />
+                        <span asp-validation-for="VergiDairesi" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="VergiNumarasi">Vergi Numarası</label>
+                        <input asp-for="VergiNumarasi" class="form-control" placeholder="Vergi Numarası" />
+                        <span asp-validation-for="VergiNumarasi" class="text-danger"></span>
+                    </div>
+
+            <div class="textAdres form-group ">
+                <label for="FirmaAdresi">Firma Adresi</label>
+                <textarea asp-for="FirmaAdresi" class="form-control" placeholder="Firma Adresiniz"></textarea>
+                <span asp-validation-for="FirmaAdresi" class="text-danger"></span>
+            </div>
+                   <div class="textAdres form-group">
+                         <label for="Aciklama">Açıklama</label>
+                        <textarea asp-for="Aciklama" class="form-control" placeholder="Açıklama giriniz"></textarea>
+                        <span asp-validation-for="Aciklama" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Başvur</button>
+                </form>
+
+                @section Scripts {
+                    <partial name="_ValidationScriptsPartial" />
+                }
+          </div>
+        </div>
+
+
+
+
+
+

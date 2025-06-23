@@ -1,0 +1,55 @@
+﻿@model CartModel
+@{
+    ViewData["Title"] = "SepetGöster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SepetGöster</h1>
+
+
+<div class="col-md-4 mb-4">
+    <h4 class="mb-3">
+        <span class="text-muted">Sepet Detay</span>
+        <ul class="list-group mb-3">
+            @foreach (var item in Model.CartItems)
+            {
+                <li class="list-group-item d-flex justify-content-between">
+                    <img width="50rem" src="~/kykİmg/@item.Resims.FirstOrDefault().Name">
+                    <div>
+                        <h6 class="my-0">@item.ProductName</h6>
+                    </div>
+                    <div>
+                        <strong>Ürünün Fiyatı: </strong>
+                        <span class="text-muted">@item.Price</span>
+                    </div>
+                    <div>
+                        <strong>Ürünün Adeti:</strong>
+                        <span class="text-muted">@item.Quantity</span>
+                    </div>
+
+                </li>
+            }
+
+
+            <li class="list-group-item d-flex justify-content-between">
+                <div>
+                    <span>@Model.TotalKdv</span>
+                    <strong>Kdv'siz Normal Fiyat</strong>
+                </div>
+                <div>
+                    <span class="text-muted">@Model.TotalKdv()</span>
+                    <strong>+Kdv Dahil Fiyat</strong>
+                </div>
+                <div>
+                    <span class="text-muted">@Model.KargoDahil()</span>
+                    <strong>Kargo Dahil Fiyat</strong>
+                </div>
+            </li>
+        </ul>
+
+
+
+    </h4>
+
+</div>
+

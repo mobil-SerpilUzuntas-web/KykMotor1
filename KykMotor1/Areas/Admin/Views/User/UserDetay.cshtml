@@ -1,0 +1,68 @@
+﻿@model UserDetayView
+
+@{
+    ViewData["Title"] = "UserDetay";
+    Layout = "~/Views/Shared/_LayoultAreas.cshtml";
+}
+
+<div class="user-details-container">
+    <div class="user-details-card">
+        <h2>Kullanıcı Detayları</h2>
+
+        <div class="user-detail-item">
+            <label>Kullanıcı Adı:</label>
+            <span>@Model.UserName</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>İsim:</label>
+            <span>@Model.Name</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>Soyisim:</label>
+            <span>@Model.SurName</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>Şehir:</label>
+            <span>@Model.City</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>Telefon:</label>
+            <span>@Model.Phone</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>Email:</label>
+            <span>@Model.Email</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>Firma Adı:</label>
+            <span>@Model.FirmaAdı</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>Vergi Dairesi:</label>
+            <span>@Model.VergiDairesi</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>Vergi Numarası:</label>
+            <span>@Model.VergiNo</span>
+        </div>
+
+        <div class="user-detail-item">
+            <label>Aktif mi?</label>
+            <span>@(Model.IsActive ? "Evet" : "Hayır")</span>
+        </div>
+
+        <a asp-area="Admin" asp-controller="Admin" asp-action="Dashboard" class="btn btn-primary">Geri Dön</a>
+    </div>
+</div>
+
+
+
+

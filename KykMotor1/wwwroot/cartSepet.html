@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepet</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cart-container {
+            width: 60%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .seller {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+            .seller h3 {
+                display: flex;
+                justify-content: space-between;
+                font-size: 18px;
+                color: #333;
+            }
+
+        .seller-name {
+            font-weight: bold;
+        }
+
+        .rating {
+            background: #ffcc00;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .shipping-info,
+        .free-shipping {
+            color: #ff5733;
+            font-size: 14px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+            .cart-item img {
+                width: 80px;
+                height: auto;
+                margin-right: 15px;
+                border-radius: 5px;
+            }
+
+        .item-info {
+            flex-grow: 1;
+        }
+
+            .item-info p {
+                margin: 5px 0;
+            }
+
+        .delivery-info {
+            color: #27ae60;
+            font-size: 14px;
+        }
+
+        .sales-info {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+            .quantity button {
+                width: 30px;
+                height: 30px;
+                border: none;
+                background: #ddd;
+                cursor: pointer;
+                font-size: 18px;
+                margin: 0 5px;
+                border-radius: 5px;
+            }
+
+            .quantity span {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+            .order-summary h3 {
+                margin-bottom: 10px;
+            }
+
+            .order-summary p {
+                display: flex;
+                justify-content: space-between;
+                font-size: 16px;
+            }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 10px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+            .confirm-btn:hover {
+                background: #219150;
+            }
+    </style>
+</head>
+
+
+<body>
+    <div class="cart-container">
+        <div class="seller">
+            <h3>Satıcı: <span class="seller-name">Kyk Motor</span> <span class="rating">9.8</span></h3>
+           
+        </div>
+        <div class="cart-item">
+            <img src="kykİmg/eldivenS.jpg" alt="OrdoVeni Vitamin A Serum">
+            <div class="item-info">
+                <p><strong>OrdoVeni</strong> Vitamin A & Retinol Cilt Bakım Serumu 30ml</p>
+                <p class="delivery-info">🚚 15 saat 26 dakika içinde sipariş verirseniz yarın kargoda!</p>
+                <div class="quantity">
+                    <button>-</button>
+                    <span>1</span>
+                    <button>+</button>
+                </div>
+            </div>
+            <p class="price">214,25 TL</p>
+        </div>
+        <div class="seller">
+            <h3>Satıcı: <span class="seller-name">Full Speed</span> <span class="rating">9.6</span></h3>
+            <p class="free-shipping">📦 Kargo Bedava!</p>
+        </div>
+        <div class="cart-item">
+            <img src="kykİmg/eldivenEr.jpg" alt="Avon Wish Of Love Parfüm">
+            <div class="item-info">
+                <p><strong>Avon</strong> Wish Of Love Kadın Parfüm Edt 50 Ml.</p>
+                <p class="sales-info">🔥 1000+ tanesi satıldı</p>
+                <p class="delivery-info">🚚 3 saat 26 dakika içinde sipariş verirseniz bugün kargoda!</p>
+                <div class="quantity">
+                    <button>-</button>
+                    <span>4</span>
+                    <button>+</button>
+                </div>
+            </div>
+            <p class="price">899,60 TL</p>
+        </div>
+        <div class="order-summary">
+            <h3>Sipariş Özeti</h3>
+            <p>Ürünün Toplamı: <strong>1.113,85 TL</strong></p>
+            <p>Kargo Toplamı: <strong>44,99 TL</strong></p>
+            <p class="total">Toplam: <strong>1.158,84 TL</strong></p>
+            <button class="confirm-btn">Sepeti Onayla</button>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".quantity button").click(function () {
+            var $button = $(this);
+            var $span = $button.siblings("span");
+            var currentValue = parseInt($span.text());
+
+            if ($button.text() === "+") {
+                $span.text(currentValue + 1);
+            } else {
+                if (currentValue > 1) {
+                    $span.text(currentValue - 1);
+                }
+            }
+        });
+
+        $(".confirm-btn").click(function () {
+            alert("Siparişiniz onaylandı!");
+        });
+    });
+
+</script>
+
+
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>-->
+<!--@model List<CartItemViewModel>
+
+    @{
+    ViewData["Title"] = "Sepetim";
+    }-->
+<!--<style>
+    .cart-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .seller-section {
+        width: 65%;
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .seller-rating {
+        background: #4CAF50;
+        color: white;
+        padding: 3px 6px;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    .free-shipping {
+        color: green;
+        font-weight: bold;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .product-image {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin-right: 10px;
+    }
+
+    .product-info {
+        flex: 1;
+    }
+
+    .quantity-selector {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+        .quantity-selector button {
+            border: none;
+            background: #ff9800;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+    .remove-item {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    .cart-summary {
+        width: 30%;
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .cart-summary button {
+            width: 100%;
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+</style>
+
+<div class="cart-container">-->
+<!--@foreach (var seller in Model.GroupBy(x => x.Seller))
+{-->
+<!--<div class="seller-section">
+    <h3>Satıcı: @seller.Key.Name <span class="seller-rating">@seller.Key.Rating</span></h3>
+    <div class="free-shipping">Kargo Bedava!</div>-->
+<!--@foreach (var item in seller)
+{-->
+<!--<div class="cart-item">
+    <input type="checkbox" class="select-item" checked>
+    <img src="@item.ImageUrl" alt="@item.Name" class="product-image">
+    <div class="product-info">
+        <h4>@item.Name</h4>
+        <p class="delivery-info">📦 @item.DeliveryInfo</p>
+        <div class="quantity-selector">
+            <button class="decrease" data-id="@item.Id">-</button>
+            <input type="text" value="@item.Quantity" class="quantity" readonly>
+            <button class="increase" data-id="@item.Id">+</button>
+        </div>
+        <span class="price">@item.Price TL</span>
+    </div>
+    <button class="remove-item" data-id="@item.Id">Sil</button>
+</div>-->
+<!--}-->
+<!--</div>-->
+<!--}-->
+<!--<div class="cart-summary">
+                <h3>Sipariş Özeti</h3>
+                <p>Ürünlerin Toplamı: <span id="subtotal">@Model.Sum(x => x.Price * x.Quantity) TL</span></p>
+                <p>Kargo Toplamı: <span id="shipping">44,99 TL</span></p>
+                <h4>Toplam: <span id="total">@(Model.Sum(x => x.Price * x.Quantity) + 44.99) TL</span></h4>
+                <input type="text" placeholder="İndirim Kodu Gir" class="discount-code">
+                <button class="apply-discount">İndirimi Uygula</button>
+                <button class="checkout">Sepeti Onayla</button>
+            </div>
+        </div>
+
+</body>
+</html>-->

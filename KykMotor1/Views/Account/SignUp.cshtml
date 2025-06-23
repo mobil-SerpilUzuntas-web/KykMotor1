@@ -1,0 +1,173 @@
+﻿@model AccountRegisterModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<title>Admin Kayıt Form Sayfası</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords"
+		  content="Invent Signup Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta tag Keywords -->
+	<!--/Style-CSS -->
+	<link rel="stylesheet" href="~/web/css/style.css" type="text/css" media="all" />
+	<!--//Style-CSS -->
+</head>
+
+<body>
+	
+	<section class="w3l-login-6">
+		<!-- /login-section -->
+		
+		<div class="login-hny">
+			<div class="form-content">
+				<div class="form-right">
+					<div class="overlay">
+						<div class="grid-info-form">
+							<h5>Hoşgeldiniz</h5>
+							<h3>Kayıt Sayfası </h3>
+							<p>
+								Kyk Motor Admin Kayıt ol sayfası
+							</p>
+							<a href="index.html" class="read-more-1 btn">Admin Anasayfa</a>
+						</div>
+
+					</div>
+				</div>
+				<div class="form-left">
+					<div class="middle">
+						@if (!ViewData.ModelState.IsValid)
+						{
+							<div class="alert alert-danger">
+								@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+								{
+									<p>@error.ErrorMessage</p>
+								}
+							</div>
+						}
+					@*	<div class="text-danger" asp-validation-summary="ModelOnly" style="color:darkred">
+						</div>*@
+                          <br />
+						@*@if (!ViewData.ModelState.IsValid)
+						{
+							<div class="alert alert-danger">
+								@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+								{
+									<p>@error.ErrorMessage</p>
+								}
+							</div>
+						}*@
+
+						@if (ViewBag.ErrorMessage != null)
+						{
+							<div class="alert alert-danger">
+								@ViewBag.ErrorMessage
+							</div>
+						}
+						<h4>Kayıt Form Sayfası Burası</h4>
+
+					</div>
+					<form asp-controller="Account" asp-action="SignUp" method="post" class="signin-form">
+						
+						<div class="form-input">
+							<label>Adınızı Giriniz</label>
+							<input asp-for="Name" />
+							<span asp-validation-for="Name" class="text-danger"></span>
+				     	</div>
+						<div class="form-input">
+							<label>Soyadınız Giriniz</label>
+							<input asp-for="SurName" />
+							<span asp-validation-for="SurName" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Telefon No Giriniz</label>
+							<input asp-for="Phone" />
+							<span asp-validation-for="Phone" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Email Adresi Giriniz</label>
+							<input asp-for="Email" />
+							<span asp-validation-for="Email" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Kullanıcı Adını Giriniz</label>
+							<input asp-for="UserName" />
+							<span asp-validation-for="UserName" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Firma Adı Giriniz</label>
+							<input asp-for="FirmaAdı" />
+							<span asp-validation-for="FirmaAdı" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Vergi Dairesi Giriniz</label>
+							<input asp-for="VergiDairesi" />
+							<span asp-validation-for="VergiDairesi" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Vergi No Giriniz</label>
+							<input asp-for="VergiNo" />
+							<span asp-validation-for="VergiNo" class="text-danger"></span>
+						</div>
+
+						<div class="form-input">
+							<label>Şehir Giriniz</label>
+							<input asp-for="Ctiy" />
+							<span asp-validation-for="Ctiy" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Şifre Giriniz</label>
+							<input type="password" asp-for="Password" />
+						</div>
+						<div class="form-input">
+							<label>Şifre Tekrar Giriniz</label>
+							<input asp-for="ConfirmPassword" />
+							<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+						</div>
+
+						
+
+						<label class="container">
+							Şartları Okudum <a href="#">Kabul Ediyorum</a>
+							<input type="checkbox">
+							<span class="checkmark"></span>
+						</label>
+						<button type="submit" class="btn">Kayıt Ol</button>
+					</form>
+					<div class="copy-right text-center">
+						<p>
+							© @DateTime.Now.Year Tüm Hakları Saklıdır| Oluşturan Serpil Uzuntaş
+							<a href="https://www.webmobil.com/" target="_blank">Web Mobil Yönet</a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+    <!-- //login-section -->
+	<!-- aşşagıda ki kod eger inputlar boş geçilirse client side validate için -->
+	@section Scripts {
+		<partial name="_ValidationScriptsPartial" />
+	}
+@*   <script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+</body>
+
+</html>

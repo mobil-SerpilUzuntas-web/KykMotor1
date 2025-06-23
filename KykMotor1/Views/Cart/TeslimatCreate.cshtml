@@ -1,0 +1,116 @@
+﻿@model TeslimantFormViewModel
+@{
+    ViewData["Title"] = "TeslimatCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}<style >
+     .btnButton{
+         margin-top:5rem;
+         width:100%;
+     }
+     .row{
+         margin-top:150px;
+     }
+</style>
+
+<div class="container mt-5">
+    <form asp-controller="Cart" asp-action="TeslimatCreate" method="post">
+        <div class="row">
+            <!-- Buyer Information -->
+            <div class="col-md-8">
+                <h3 class="text-primary">Alıcı Bilgileri</h3>
+                <div class="mb-3">
+                    <label asp-for="Buyer.Name" class="form-label">Alıcı İsmi</label>
+                    <input asp-for="Buyer.Name" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Buyer.Surname" class="form-label">Alıcı Soyadı</label>
+                    <input asp-for="Buyer.Surname" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Buyer.Email" class="form-label">Email</label>
+                    <input asp-for="Buyer.Email" class="form-control" type="email" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Buyer.GsmNumber" class="form-label">Alıcı Telefon</label>
+                    <input asp-for="Buyer.GsmNumber" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Buyer.IdentityNumber" class="form-label">Tc Kimlik No</label>
+                    <input asp-for="Buyer.IdentityNumber" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Buyer.Country" class="form-label">Ülke</label>
+                    <input asp-for="Buyer.Country" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Buyer.City" class="form-label">Şehir</label>
+                    <input asp-for="Buyer.City" class="form-control" />
+                </div>
+                 <div class="mb-3">
+                    <label asp-for="Buyer.ZipCode" class="form-label">Posta Kodu</label>
+                    <input asp-for="Buyer.ZipCode" class="form-control" />
+                </div>
+              
+            </div>
+        
+
+            <!-- Shipping Address -->
+         
+        </div>
+
+        <div class="col-md-8 text-center btnButton w-100">
+            <button type="submit" class="btn btn-primary btn-lg ">Devam Et</button>
+        </div>
+    </form>
+</div>
+
+
+@*
+    <div class="col-md-8">
+                <h3 class="text-primary">Teslimat Adresi</h3>
+                <div class="mb-3">
+                    <label asp-for="ShippingAddress.ContactName" class="form-label">Contact Name</label>
+                    <input asp-for="ShippingAddress.ContactName" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ShippingAddress.Description" class="form-label">Description</label>
+                    <textarea asp-for="ShippingAddress.Description" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ShippingAddress.City" class="form-label">City</label>
+                    <input asp-for="ShippingAddress.City" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ShippingAddress.Country" class="form-label">Country</label>
+                    <input asp-for="ShippingAddress.Country" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ShippingAddress.ZipCode" class="form-label">Zip Code</label>
+                    <input asp-for="ShippingAddress.ZipCode" class="form-control" />
+                </div>
+            </div>
+            <!-- Billing Address -->
+            <div class="col-md-8">
+                <h3 class="text-primary">Fatura bilgileri</h3>
+                <div class="mb-3">
+                    <label asp-for="BillingAddress.ContactName" class="form-label">Adı ve Soyadı</label>
+                    <input asp-for="BillingAddress.ContactName" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="BillingAddress.Description" class="form-label">Açıklama</label>
+                    <textarea asp-for="BillingAddress.Description" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="BillingAddress.City" class="form-label">Şehir</label>
+                    <input asp-for="BillingAddress.City" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="BillingAddress.Country" class="form-label">Ülke</label>
+                    <input asp-for="BillingAddress.Country" class="form-control" />
+                </div>
+                <div class="mb-3 mt-10">
+                    <label asp-for="BillingAddress.ZipCode" class="form-label">Posta Kodu
+                    </label>
+                    <input asp-for="BillingAddress.ZipCode" class="form-control" />
+                </div>
+            </div>*@

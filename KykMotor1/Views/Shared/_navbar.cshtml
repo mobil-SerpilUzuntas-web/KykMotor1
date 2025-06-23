@@ -1,0 +1,15 @@
+﻿@model KykMotorApp.WebIU.Models.ProductListModel
+
+<ul class="nav navbar-nav">
+    @if (Model != null && Model.Categories != null)
+    {
+        foreach (var item in Model.Categories)
+        {
+            <li><a href="~/Category/Index"><i class="fa fa-shopping-cart fa-fw"></i> @item.Name</a></li>
+        }
+    }
+    else
+    {
+        <li>No categories available</li>
+    }
+</ul>

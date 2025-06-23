@@ -1,0 +1,429 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    <link href="~/animasyon/blink.css" rel="stylesheet" />
+}<style >
+    .img-responsive{
+        border:solid 2px red;
+    }
+     .img-circle{
+         width: 450px;
+          height:450px;  
+         
+     }
+
+     .icRow{
+         display:flex;
+         justify-content: center;
+
+     }
+     .carousel-container {
+         overflow: hidden; /* Sadece görünür alanı göster */
+         width: 100%; /* Tüm ekran genişliğini kapla */
+         padding: 1rem 0px;
+         position: relative; /* Konumlandırma için gerekli */
+     }
+
+     .carousel {
+         display: flex;
+         width: max-content; /* İçerik genişliği kadar alan kapla */
+         animation: scroll-carousel 5.5s linear infinite; /* Kayma animasyonu */
+     }
+
+         .carousel img {
+             height: 100%; /* Görsellerin yüksekliği */
+             margin: 0 2rem; /* Görseller arası boşluk */
+             object-fit: contain; /* Görselleri tam sığdır */
+         }
+
+
+</style>
+
+<!-- Preloader Start --> 
+@*<div id="preloader">
+    <i class="fa fa-spinner fa-spin preloader-animation" aria-hidden="true"></i>
+</div>*@
+<!-- Preloader End -->
+<!-- WRAPPER  
+
+        <!-- HERO SLIDER -->
+     <section class="cd-hero">
+            <ul class="list-unstyled cd-hero-slider autoplay">
+
+        <li class="selected" style="background-image:url('/images/arkaplanslider/m1.jpg');">
+           
+                    <div class="container">
+                        <h1>KYK MOTOR</h1>
+                        <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                        <a href="#" class="btn btn-primary btn-lg text-uppercase">Bizi Takip Et</a>
+                    </div>
+         </li>
+
+               <li style="background-image:url('/images/arkaplanslider/m2.jpg');">
+
+                    <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Bizi Takip Et</a>
+                    </div>
+                </li>
+
+        <li style="background-image:url('/images/arkaplanslider/m1.jpg');">
+                    <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Bizi Takip Et</a>
+                    </div>
+                </li>
+
+
+                
+        <li class="selected" style="background-image:url('/images/arkaplanslider/m4.jpg');">
+
+                    <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Bizi Takip Et</a>
+                    </div>
+                </li>
+
+        <li style="background-image:url('/images/arkaplanslider/m5.jpg');">
+
+                    <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Bizi Takip Et</a>
+                    </div>
+                </li>
+
+        <li style="background-image:url('/images/arkaplanslider/m6.jpg');">
+                    <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Bizi Takip Et</a>
+                    </div>
+                </li>
+
+
+         <li class="selected" style="background-image:url('/images/arkaplanslider/m7.jpg');">
+
+                    <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Bizi Takip Et</a>
+                    </div>
+                </li>
+
+        <li style="background-image:url('/images/arkaplanslider/m8.jpg');">
+
+                    <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Yedek Parça</a>
+                    </div>
+                </li>
+
+                <li style="background-image:url('/images/arkaplanslider/m9.jpg');">
+                    <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Bisiklet Parça</a>
+                    </div>
+                </li>
+        <li style="background-image:url('/images/arkaplanslider/m10.jpg');">
+            <div class="container">
+                <h1>KYK MOTOR</h1>
+                <h2>Kyk motor bayi sitemize hoş geldiniz.Sizlere Hizmet vermekten memnunuyet duyuyoruz.</h2>
+                <a href="#" class="btn btn-primary btn-lg text-uppercase">Motor Parça</a>
+            </div>
+        </li>
+            </ul>
+
+
+            <div class="arrow-nav">
+                <div class="prev"><a class="hero-prev" href="#"><i class="fa fa-angle-left"></i></a></div>
+                <div class="next"><a class="hero-next" href="#"><i class="fa fa-angle-right"></i></a></div>
+            </div>
+
+        </section>
+
+
+
+
+
+    <!-- CONTENT START -->
+<section id="home-content" style="background-color:ghostwhite">
+
+        <div id="home-intro" class="container padding35">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 text-center wow bounceIn">
+                            <img alt="" class="img-responsive img-circle" src="images/other/cir1.jpg" >
+                        </div>
+                    <div class="col-md-4">
+
+                        <div id="services-4">
+                            <div class="row wow fadeIn">
+                                <div class="col-md-12">
+                                    <h4 class="text-uppercase "><b>Hizmet ve Servislerimiz</b></h4>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="feature wow fadeInUp">
+                                        <i class="fa fa-bar-chart"></i>
+                                        <h4 class="text-uppercase">Motor Tamiri</h4>
+                                        <p>Motor tamir bakım hizmetleri</p>
+                                    </div>
+                                    <div class="feature wow fadeInUp">
+                                        <i class="fa fa-star"></i>
+                                        <h4 class="text-uppercase">Bisiklet Tamiri</h4>
+                                        <p>Bisiklet tamir bakımı yedek parça.</p>
+                                    </div>
+                                    <div class="feature wow fadeInUp">
+                                        <i class="fa fa-mobile"></i>
+                                        <h4 class="text-uppercase">Yedek Parça Şatış</h4>
+                                        <p>Her türlü yedek parça şatışı</p>
+                                    </div>
+                                    <div class="feature wow fadeInUp">
+                                        <i class="fa fa-rocket"></i>
+                                        <h4 class="text-uppercase">Bayilik Hizmetleri</h4>
+                                        <p>Bayilik için sizler'de bize başvurun</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+@*
+                        <div class="col-md-6 wow fadeIn">
+                            <h4>WE ARE <b>EDURA</b></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. <b>Lorem ipsum dolor sit amet,</b> consectetur adipiscing elit. </p>
+                            <ul class="list-unstyled home-list">
+                                <li><i class="fa fa-check-circle fa-fw"></i> Responsive Design</li>
+                                <li><i class="fa fa-check-circle fa-fw"></i> Multiple Layouts</li>
+                                <li><i class="fa fa-check-circle fa-fw"></i> Mobile Ready</li>
+                                <li><i class="fa fa-check-circle fa-fw"></i> Bootstrap Powered</li>
+                                <li><i class="fa fa-check-circle fa-fw"></i> 4 Contact Us Templates</li>
+                                <li><i class="fa fa-check-circle fa-fw"></i> Portfolio</li>
+                                <li><i class="fa fa-check-circle fa-fw"></i> eCommerce Ready</li>
+                            </ul>
+                        </div>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            
+     <div id="projects" class="container-fluid bg-gray padding35" style="border-top:1px solid white; 
+           border-left: 0px; border-right: 0px;background-color:#00000000;margin-bottom:22px">
+        <div class="container-fluid">
+         
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                      
+                    <h3 style="color:white">Porfoyümüz <b style="color:white">Kategoriler</b></h3>
+                    </div>
+
+
+                    <div id="portfolio-carousel-home" class="owl-carousel">
+                
+                        <div class="portfolio-item">
+                            <div class="portfolio-top">
+
+                                <img alt="" class="img-responsive" src="~/images/anasayfaküçükboy/2.jpg" >
+                                <div class="mask"></div>
+                                <span class="portfolio-tag"><i class="fa fa-tag fa-fw"></i> <a href="#">BİSİKLET YEDEK PARÇA</a></span>
+                                <ul class="list-unstyled list-inline">
+                                    <li><a href="#"><i class="fa fa-search fa-fw"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                                </ul>
+                            </div>
+                            <span class="portfolio-item-desc"><a href="#">BİSİKLET YEDEK PARÇA</a></span>
+                        </div>
+
+                        <div class="portfolio-item">
+                            <div class="portfolio-top">
+                                <img alt="" class="img-responsive" src="~/images/anasayfaküçükboy/1.jpg" />
+                                <div class="mask"></div>
+                                <span class="portfolio-tag"><i class="fa fa-tag fa-fw"></i> <a href="#">MOTOR YEDEK PARÇA</a></span>
+                                <ul class="list-unstyled list-inline">
+                                    <li><a href="#"><i class="fa fa-search fa-fw"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                                </ul>
+                            </div>
+                            <span class="portfolio-item-desc"><a href="#">MOTOR YEDEK PARÇA</a></span>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-top">
+                                <img alt="" class="img-responsive" src="~/images/anasayfaküçükboy/mlastik.jpg">
+                                <div class="mask"></div>
+                                <span class="portfolio-tag"><i class="fa fa-tag fa-fw"></i> <a href="#">MOTOR LASTİK</a></span>
+                                <ul class="list-unstyled list-inline">
+                                    <li><a href="#"><i class="fa fa-search fa-fw"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                                </ul>
+                            </div>
+                            <span class="portfolio-item-desc"><a href="#">MOTOR LASTİK</a></span>
+                        </div>
+
+                        <div class="portfolio-item">
+                            <div class="portfolio-top">
+                                <img alt="" class="img-responsive" src="~/images/anasayfaküçükboy/blastik.jpg">
+                                <div class="mask"></div>
+                                <span class="portfolio-tag"><i class="fa fa-tag fa-fw"></i> <a href="#">BİSİKLET LASTİK</a></span>
+                                <ul class="list-unstyled list-inline">
+                                    <li><a href="#"><i class="fa fa-search fa-fw"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                                </ul>
+                            </div>
+                            <span class="portfolio-item-desc"><a href="#">BİSİKLET LASTİK</a></span>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-top">
+                                <img alt="" class="img-responsive" src="~/images/anasayfaküçükboy/1.jpg" />
+                                <div class="mask"></div>
+                                <span class="portfolio-tag"><i class="fa fa-tag fa-fw"></i> <a href="#">MOTOR YEDEK PARÇA</a></span>
+                                <ul class="list-unstyled list-inline">
+                                    <li><a href="#"><i class="fa fa-search fa-fw"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                                </ul>
+                            </div>
+                            <span class="portfolio-item-desc"><a href="#">MOTOR YEDEK PARÇA</a></span>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-top">
+
+                                <img alt="" class="img-responsive" src="~/images/anasayfaküçükboy/2.jpg">
+                                <div class="mask"></div>
+                                <span class="portfolio-tag"><i class="fa fa-tag fa-fw"></i> <a href="#">BİSİKLET YEDEK PARÇA</a></span>
+                                <ul class="list-unstyled list-inline">
+                                    <li><a href="#"><i class="fa fa-search fa-fw"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                                </ul>
+                            </div>
+                            <span class="portfolio-item-desc"><a href="#">BİSİKLET YEDEK PARÇA</a></span>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-top">
+                                <img alt="" class="img-responsive" src="~/images/anasayfaküçükboy/1.jpg" />
+                                <div class="mask"></div>
+                                <span class="portfolio-tag"><i class="fa fa-tag fa-fw"></i> <a href="#">MOTOR YEDEK PARÇA</a></span>
+                                <ul class="list-unstyled list-inline">
+                                    <li><a href="#"><i class="fa fa-search fa-fw"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                                </ul>
+                            </div>
+                            <span class="portfolio-item-desc"><a href="#">MOTOR YEDEK PARÇA</a></span>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-top">
+                                <img alt="" class="img-responsive" src="~/images/anasayfaküçükboy/1.jpg" />
+                                <div class="mask"></div>
+                                <span class="portfolio-tag"><i class="fa fa-tag fa-fw"></i> <a href="#">MOTOR YEDEK PARÇA</a></span>
+                                <ul class="list-unstyled list-inline">
+                                    <li><a href="#"><i class="fa fa-search fa-fw"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-link fa-fw"></i></a></li>
+                                </ul>
+                            </div>
+                            <span class="portfolio-item-desc"><a href="#">MOTOR YEDEK PARÇA</a></span>
+                        </div>
+                  
+                      
+                   </div>
+                     
+               </div>
+
+
+                </div>
+            </div>
+
+        <div class="container-fluid">
+        <div class="row wow fadeIn">
+            <div class="col-md-12 text-center">
+                <h3 class="text-uppercase">Çalıştığımız <b>Markalar</b></h3>
+                <div class="space40"></div>
+            </div>
+        </div>
+            <div class="row icRow">
+            <div class="col-md-8">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <img src="~/images/r1.jpg" alt="Marka 1">
+                        <img src="~/images/r2.jpg" alt="Marka 2">
+                        <img src="~/images/r3.jpg" alt="Marka 3">
+                        <img src="~/images/r4.jpg" alt="Marka 4">
+                        <img src="~/images/r3.jpg" alt="Marka 5">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+   
+
+
+
+
+
+@*    <div id="partners" class="container-fluid bg-gray padding35" style="border-top: 1px solid white; border-bottom: 1px solid white;background-color:#00000000">
+            <div class="container">
+                <div class="row wow fadeIn">
+                    <div class="col-md-12 text-center">
+                    <h3 class="text-uppercase">Çalıştıgımız <b>Markalar</b></h3>
+                        <div class="space40"></div>
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <!-- carousel start -->
+                        <div id="partners-gallery" class="owl-carousel">
+
+                            <div class="text-center">
+                                <img alt="" src="~/images/r3.jpg">
+                            </div>
+
+                            <div class="text-center">
+                                <img alt="" src="~/images/r1.jpg">
+                            </div>
+
+                            <div class="text-center">
+                            <img alt="" src="~/images/r2.jpg">
+                            </div>
+
+                            <div class="text-center">
+                            <img alt="" src="~/images/r3.jpg">
+                            </div>
+
+                            <div class="text-center">
+                            <img alt="" src="~/images/r4.jpg">
+                            </div>
+
+                            <div class="text-center">
+                            <img alt="" src="images/r1.jpg">
+                            </div>
+
+                            <div class="text-center">
+                            <img alt="" src="~/images/r2.jpg">
+                            </div>
+
+                        </div>
+                        <!-- carousel end -->
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                                                                                              
+    </section>
+    <!-- CONTENT END -->
+
+
+
+
+
+
+
+
+

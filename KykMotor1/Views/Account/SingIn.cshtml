@@ -1,0 +1,84 @@
+﻿
+@model AccountLoginModel
+
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+
+<!-- Head -->
+<head>
+
+	<title>Kyk Motor Login Form</title>
+
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="Existing Login Form Widget Responsive,
+      Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs,
+      Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template,
+      Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung,
+      LG, Sony Ericsson, Motorola Web Design">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //Meta-Tags -->
+
+	<link href="~/register/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+
+	<!-- Style -->
+	<link rel="stylesheet" href="~/register/css/style.css " type="text/css" media="all">
+
+	<!-- Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<!-- //Fonts -->
+
+</head>
+<!-- //Head -->
+<!-- Body -->
+<body>
+
+	                      <h1>KYK MOTOR GİRİŞ FORMU</h1>
+
+	<div class="w3layoutscontaineragileits">
+
+		<form asp-controller="Account" asp-action="SingIn" method="post">
+              <div>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+              </div>
+               <br />
+                <input asp-for="UserName" placeholder="Kullanıcı Adı Giriniz">
+	           <div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+	          </div>
+			<br />
+                <input asp-for="Password" placeholder="Şifre Giriniz">
+
+			
+			<ul class="agileinfotickwthree">
+				<li>
+					<input type="checkbox" id="brand1" value="">
+					<label for="brand1"><span></span>Beni Hatırla</label>
+					
+				</li>
+			</ul>
+			<div class="aitssendbuttonw3ls">
+				<input type="submit" value="Giriş Yap">	
+			</div>
+		</form>
+	</div>
+
+
+
+	<div class="w3footeragile">
+		© @DateTime.Now.Year Tüm Hakları Saklıdır| Oluşturan Serpil Uzuntaş
+		<a href="https://www.webmobil.com/" target="_blank" style="color:crimson">Web Mobil Yönet</a>
+	</div>
+
+</body>
+<!-- //Body -->
+
+</html>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+  }
+

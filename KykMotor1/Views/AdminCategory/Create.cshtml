@@ -1,0 +1,67 @@
+﻿@model CategoryModel
+@{
+    ViewData["Title"] = "CreateCategory";
+}
+
+<style>
+    .sutun {
+        padding-top: 185px;
+        padding-bottom: 50px;
+        display: flex;
+        justify-content: center;
+    }
+
+   .form-group {
+       
+       margin-bottom:15px;
+    }
+   
+    form{
+        display: grid;
+        background-color: #69696947;
+        padding-top: 20px;
+        padding-bottom: 14px;
+    }
+
+    #home-content {
+      background-color:lavenderblush
+    }
+
+    .kapsa{
+        text-align:center;
+    }
+
+    .formbutton{
+        margin-top:12px;
+    }
+
+  
+  .fc {
+        border: 2px solid #0000006b;
+        height:45px;
+   }
+</style>
+
+<section id="home-content">
+<div class="row sutun">
+        <div class="col-md-4 kapsa">
+            <h1>Yeni Kategori Ekleme text</h1>
+            <form asp-controller="AdminCategory" asp-action="Create" method="post">
+
+                <div class="form-group" >
+                    <label asp-for="Name" class="col-md-12 col-form-label"></label>
+                    <div class="col-md-12 ">
+                        <input asp-for="Name" class="form-control fc" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 offset-md-2">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block formbutton">Kategory Ekle</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ </section>

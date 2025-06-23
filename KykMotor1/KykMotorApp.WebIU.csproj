@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\config" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\description" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\HEAD" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\applypatch-msg.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\commit-msg.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\post-update.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\pre-applypatch.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\pre-commit.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\pre-merge-commit.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\pre-push.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\pre-rebase.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\pre-receive.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\push-to-checkout.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\sendemail-validate.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\hooks\update.sample" />
+    <None Include="wwwroot\soft-ui-dashboard\.git\info\exclude" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IyzipayCore" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KykShopApp.Business\KykShopApp.Business.csproj" />
+    <ProjectReference Include="..\KykShopApp.Entities\KykShopApp.Entities.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Kullanicilar\Data\" />
+    <Folder Include="Areas\Kullanicilar\Models\" />
+    <Folder Include="wwwroot\media-quary\" />
+    <Folder Include="wwwroot\poppe\" />
+    <Folder Include="wwwroot\soft-ui-dashboard\.git\objects\info\" />
+    <Folder Include="wwwroot\soft-ui-dashboard\.git\objects\pack\" />
+    <Folder Include="wwwroot\soft-ui-dashboard\.git\refs\heads\" />
+    <Folder Include="wwwroot\soft-ui-dashboard\.git\refs\tags\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,466 @@
+﻿@model ProductDetayViewModel
+@{
+    ViewData["Title"] = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /*form submit start*/
+   /******************************************************/
+   .gty{
+    display: flex;
+    background: aqua;
+    width: 39rem;
+    }
+   
+    .button {
+        border-radius: 3px;
+        background-color: chocolate;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 2.2rem;
+        padding: 0.3rem 0rem 0.3rem 0rem;
+        width: 20rem;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+     }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            .button span:after {
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+            }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+       .button:hover span:after {
+           opacity: 1;
+           right: 0;
+       }
+    /**********************************************************/
+    /*form submit and*/
+
+   /************************************************************/
+        /* Number input'un default oklarını kaldır */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Input ve butonları yan yana hizala */
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 120px;
+        }
+
+        .quantity-container button {
+            color: white;
+            border: none;
+            font-size: 2rem;
+            background: chocolate;
+            cursor:pointer;
+        
+        
+        }
+        
+
+      /*  .quantity-container button:hover {
+            background-color: maroon;
+        }*/
+
+        .quantity-container input {
+         display: flex;
+         align-items: center;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         overflow: hidden;
+         width: 35rem;
+        }
+
+        .quantity-container input {
+            display: flex;
+            align-items: center;
+            border: 0.2rem solid #ccc;
+            font-size: 1.8rem;
+            width: 6.3rem;
+            text-align: center;
+        }
+/*    *******************************************************/
+
+
+    img {
+        vertical-align: middle;
+    }
+
+    .column {
+        background-color: aliceblue;
+    }
+    /* Position the image container (needed to position the left and right arrows) */
+    .container {
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+        display: none;
+    }
+
+    .rowcolumn {
+     margin: 0 0 0 0;
+     border: solid 1rem #CCC;
+  
+     display: flex;
+     justify-content: space-evenly;
+    }
+
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+        cursor: pointer;
+    }
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 51%;
+        padding: 12px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 2rem;
+        border-radius: 3px 0 0 3px;
+        background-color: black
+    }
+
+    .prev {
+        left: 2rem;
+        border-radius: 3px 0 0 3px;
+        background-color: black
+    }
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+
+    /* Container for image text */
+    .caption-container {
+        text-align: center;
+        background-color: #222;
+        padding: 2px 16px;
+        color: white;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Six columns side by side */
+    .column {
+        float: left;
+        width: 16.66%;
+    }
+
+        .column img {
+            border-radius: 0;
+        }
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+        opacity: 0.6;
+    }
+
+   .active,
+   .demo:hover {
+       opacity: 1;
+   }
+ 
+
+    .images {
+        max-width: 500px;
+        border: solid 0.2em #CCC;
+    }
+
+      .images img {
+        max-width: 100%;
+      }
+
+    .loupe {
+        display: none;
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border: 1px solid black;
+        box-shadow: 5px 5px 12px black;
+        background: rgba(0, 0, 0, 0.25);
+        cursor: crosshair;
+        overflow: hidden;
+    }
+
+        .loupe img {
+            position: absolute;
+            right: 0px;
+        }
+
+  
+
+</style>
+<!-- CONTENT START -->
+<div id="wrapper">
+    <section id="content" style="padding-top:20rem;padding-bottom:3em">
+        <!-- shop section start -->
+        <section id="shop" class="container">
+            <!-- row start -->
+            <div class="row">
+                <!-- main column start -->
+                <div class="col-md-9">
+                    <div class="row">
+                        <!-- product page top info start -->
+                        <div class="col-md-12 product">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    @foreach (var item in Model.Resims)
+                                    {
+                                        <div class="mySlides">
+                                            <div class="images">
+                                                <img src="~/kykİmg/@item.Name" width="100%">
+                                            </div>
+                                        </div>
+
+                                    }
+
+                                    <div class="loupe"></div>
+                                    <div class="caption-container">
+                                        <p id="caption"></p>
+                                    </div>
+                                    <div class="row rowcolumn" style="margin:0 0 0 0;border:solid 1px black">
+                                        @for (int i = 0; i < Model.Resims.Count; i++)
+                                        {
+                                            <div class="column">
+                                                <img class="demo cursor" src="~/kykİmg/@Model.Resims[i].Name"
+                                                 style="width:100%" onclick="currentSlide(@(i + 1))"
+                                                 alt="image @i">
+
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+
+                                    <div class="padding15">
+                                        <h2 class="product-title"><b>@Model.ProductName</b></h2>
+                                        <p>
+                                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                            3 Reviews
+                                        </p>
+                                        <p class="product-price">@Model.Price</p>
+                                    </div>
+                                    <p>SİNGLE SWORD Yarım Parmak Taktik Eldiven Bisiklet Motosiklet Outdoor Eldiven.İçi Kaliteli kumaş ve dış doku</p>
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                       <div class="padding15">
+                                            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="form-inline">
+                                        
+                                           <div class="form-group qty" style="display:flex;width:39rem">
+                                              <div class="quantity-container">
+                                                        <input type="hidden" name="productId" value="@Model.Id">
+                                                  <button type="button" id="decreaseBtn">−</button>
+                                                   <input id="quantityInput" type="number" name="quantity" value="1" min="1" step="1">
+                                                  <button type="button" id="increaseBtn">+</button>
+                                              </div>
+                                                 <button type="submit" class="button"><span>Sepete Ekle</span></button>
+                                              </div>
+                                        </form>
+                                       </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding25">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#acıklama">Ürün Açıklaması</a></li>
+                                <li><a data-toggle="tab" href="#spec">Ürünün Tüm Özellikleri</a></li>
+
+                            </ul>
+                            <div class="tab-content">
+                                <!-- description tab start -->
+                                <div id="acıklama" class="tab-pane fade in active">
+                                    <p>@Model.Description</p>
+
+                                </div>
+                                <!-- description tab end -->
+                                <!-- Specifications tab start -->
+                                <div id="spec" class="tab-pane fade">
+                                    <div class="table-responsive">
+                                        <ul>
+                                            <li>Kışlık Eldiven</li>
+                                            <li>Dışı Taraf Deri</li>
+                                            <li>Dokusu Yumuşak</li>
+                                            <li>Esnek</li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <!-- Specifications tab end -->
+                            </div>
+
+                        </div>
+                    </div>
+               </div>
+                    <!--Yan sidebar start sonradan ekle -->
+                <div id="sidebar" class="col-md-3">
+@*
+                    <!-- search widget start -->
+                    <div class="widget">
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-lg" placeholder="Arama...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>*@
+                    <!-- search widget end -->
+                    <!-- categories widget start -->
+                    <div class="widget">
+                        <h4>KATEGORİLER</h4>
+                        <ul class="list-unstyled link-list">
+                            @await Component.InvokeAsync("CategoryYanList")
+   
+                        </ul>
+                    </div>
+         
+
+                </div>
+                <!-- sidebar end -->
+              
+                <div class="col-md-12">
+                    <!-- carousel start-->
+                    <div class="text-center">
+                        <h3>YENİ GELENLER <b>Bakmadan Geçme</b></h3>
+                    </div>
+                 
+                    <div id="products-carousel" class="owl-carousel">
+                        <!-- carousel start -->
+                        @await Component.InvokeAsync("CategorySlider", new { Id = Model.Id })
+                        <!--carousel end-->
+                    </div>
+                </div>
+           </div>
+        
+        </section>
+
+       
+          
+      
+    </section>
+
+</div>
+
+<!-- BOOTSTRAP JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<!-- FONT AWESOME -->
+<script src="https://kit.fontawesome.com/4077c6ef6a.js" crossorigin="anonymous"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/lib/imagezoom.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#increaseBtn").click(function () {
+            let currentValue = parseInt($("#quantityInput").val());
+            $("#quantityInput").val(currentValue + 1);
+        });
+
+        $("#decreaseBtn").click(function () {
+            let currentValue = parseInt($("#quantityInput").val());
+            if (currentValue > 1) {
+                $("#quantityInput").val(currentValue - 1);
+            }
+        });
+
+        $("#quantityInput").on("change", function () {
+            let value = $(this).val();
+            if (value < 1) {
+                $(this).val(1);
+            }
+        });
+    });
+</script>
+
+
+      
+       
+  
+
+
+
+
+ 
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+

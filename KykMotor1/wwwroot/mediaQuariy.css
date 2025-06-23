@@ -1,0 +1,41 @@
+﻿/* Küçük Telefonlar */
+@media only screen and (max-width: 480px) {
+    /* Küçük telefonlar için CSS kuralları buraya gelecek */
+}
+
+/* Orta Boy Telefonlar ve Üstü */
+@media only screen and (min-width: 481px) and (max-width: 600px) {
+    /* Orta boy telefonlar için CSS kuralları buraya gelecek */
+}
+
+
+
+
+/* Küçük Tabletler ve Üstü */
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
+
+
+      
+    }
+/* Küçük Tabletler ve Üstü */
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+    .navbar-toggle {
+
+        display:block;
+    }
+
+
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+    /* Küçük laptoplar için CSS kuralları buraya gelecek */
+}
+
+/* Orta Boy Laptoplar ve Üstü */
+@media only screen and (min-width: 1280px) and (max-width: 1440px) {
+    /* Orta boy laptoplar için CSS kuralları buraya gelecek */
+}
+
+/* Büyük Laptoplar ve Üstü */
+@media only screen and (min-width: 1440px) {
+    /* Büyük laptoplar için CSS kuralları buraya gelecek */
+}

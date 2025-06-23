@@ -1,0 +1,56 @@
+﻿
+
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+    /*   top: 50px;*/
+    background-color: blue;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    top: 0px;
+    border-width: 0 0 1px;
+}
+
+.navbar-fixed-bottom {
+    bottom: 0;
+    margin-bottom: 0;
+    border-width: 1px 0 0;
+}
+
+.navbar-fixed-buttom1 {
+    background-color: Red;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    top: 60px;
+    border-width: 0 0 1px;
+    border-radius: 0px;
+}
+
+.navbar-toggle {
+    display: none;
+}
+@media only screen and (max-width: 767) {
+    .navbar-fixed-top {
+        display: none;
+    }
+
+    .navbar-fixed-buttom1 {
+        top: 0;
+    }
+}
+@media only screen and (max-width: 600px) {
+    /* Tüm telefonlar için genel CSS kuralları buraya gelecek */
+
+
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    
+.navbar-toggle {
+        display: block;
+    }
+}

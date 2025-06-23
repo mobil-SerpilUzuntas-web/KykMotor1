@@ -1,0 +1,26 @@
+﻿
+/* Yanıp sönme animasyonu */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scroll-carousel {
+    0% {
+        transform: translateX(100%); /* Sağdan başla */
+    }
+
+    100% {
+        transform: translateX(-100%); /* Sola kadar kaydır */
+    }
+}
+

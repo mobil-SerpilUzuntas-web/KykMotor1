@@ -1,0 +1,17 @@
+﻿@model KykMotorApp.WebIU.Models.CategoryListModel
+
+
+
+@foreach (var item in Model.Categories)
+{
+    <li><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i> <a href="/Category/Index/@item.Id"> @item.Name <span class="pull-right">(15)</span></a></li>
+    <li><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i> <a href="#">Furniture <span class="pull-right">(5)</span></a></li>
+    <li><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i> <a href="#">Electronics <span class="pull-right">(2)</span></a></li>
+    <li><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i> <a href="#">Books <span class="pull-right">(1)</span></a></li>
+    <li><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i> <a href="#">Accessories <span class="pull-right">(19)</span></a></li>
+    <li><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i> <a href="#">Computers <span class="pull-right">(2)</span></a></li>
+    <li><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i> <a href="#">Cameras <span class="pull-right">(7)</span></a></li>
+
+}
+
+

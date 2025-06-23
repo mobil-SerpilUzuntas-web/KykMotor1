@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/jquery/",
+      "files": [
+        "jquery.js"
+      ]
+    },
+    {
+      "library": "popper.js@2.11.8",
+      "destination": "wwwroot/popper.js/"
+    },
+    {
+      "library": "jquery-popup-overlay@2.1.5",
+      "destination": "wwwroot/jquery-popup-overlay/"
+    },
+    {
+      "library": "bootstrap-popup@1.0.1",
+      "destination": "wwwroot/bootstrap-popup/"
+    }
+   
+  ,
+{
+  "provider": "cdnjs",
+  "library": "bootstrap@5.3.3",
+  "destination": "wwwroot/edura/vendor/bootstrap/",
+  "files": [
+    "js/bootstrap.min.js",
+    "css/bootstrap-grid.css",
+    "css/bootstrap-grid.css.map",
+    "css/bootstrap.css",
+    "css/bootstrap.min.css",
+    "css/bootstrap.min.css.map",
+    "css/bootstrap.rtl.css",
+    "css/bootstrap.rtl.css.map",
+    "css/bootstrap.rtl.min.css",
+    "css/bootstrap.rtl.min.css.map"
+  ]
+}
+]
+}

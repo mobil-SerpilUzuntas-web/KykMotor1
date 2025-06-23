@@ -1,0 +1,236 @@
+﻿@addTagHelper *, KykMotorApp.WebIU
+@model List<ApplicationUser>
+
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_LayoultAreas.cshtml";
+}
+<link href="~/areascss/css/detaycss.css" rel="stylesheet" />
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+          
+            <div class="card mb-4">
+                <div class="btn-center">
+                    <!-- Butonu ortalamak için bu div'i ekledik -->
+                    <a asp-area="" asp-controller="Account" asp-action="SignUp" class="btnBaslik badge bg-gradient-primary">
+                        Yeni Kullanıcı Kaydet
+                    </a>
+                </div>
+                     <br />
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr style="text-align:center">
+                                    <th>Kullanıcı Adı</th>
+                                    <th>Adı</th>
+                                    <th>Soyadı</th>
+                                    <th>Durumu</th>
+                                    <th>Rolü</th>
+                                    <th>Admin İşlemleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               @foreach (var item in Model)
+                              {
+                                <tr style="text-align:center">
+                                  
+                                    <td>@item.UserName</td>
+
+                                    <td>@item.Name</td>
+                                    <td>@item.SurName</td>
+                                     <td>
+                                         @*Bu kısım UserRoleNamesTagHelper yardımcı sınıfa gidiyor ve Roll Name getiriyor *@
+                                        <user-role-names user-id="@item.Id" ></user-role-names>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                            <span class="badge badge-sm @(item.IsActive ? "bg-gradient-success" : "bg-gradient-danger")">
+                                                @(item.IsActive ? "Aktif" : "Pasif")
+                                            </span>
+
+                                     @* <span class="badge badge-sm bg-gradient-success">@(item.IsActive ? "Aktif" : "Pasif") </span>*@
+                                    </td>
+                                  
+                                    <!-- Admin işlemlerini bir sütun içinde birleştiriyoruz -->
+                             @*    <td class="align-middle text-center text-sm ">
+                                      
+                                      @if (item.IsActive)
+                                      {
+                                      <!-- Kullanıcı Sil Butonu -->
+                                      <a asp-action="UserDelete" asp-route-userId="@item.Id" class="btn btn-danger">AcountUserDelete Git sil</a>
+
+                                      <!-- Şifre Sıfırlama Butonu -->
+                                      <form asp-action="ResetPasswordAdmin" method="post" style="display:inline;">
+                                          <input type="hidden" name="userId" value="@item.Id" />
+                                          <input type="text" name="newPassword" placeholder="Yeni Şifre" class="form-control" required />
+                                          <button type="submit" class="btn btn-warning">Şifreyi Sıfırla gittigi yer Account ResetPasswordAdmin</button>
+                                      </form>
+                                      }
+                                      else
+                                      {
+                                      <span class="text-muted">Silindi</span>
+                                      }
+                                     <a asp-controller="User" asp-action="Details" style="margin-right:1rem">
+                                         <span class="badge badge-sm bg-gradient-info">Detay</span>
+                                     </a>
+                                            <a asp-controller="User" asp-action="Delete" style="margin-right:1rem">
+                                         <span class="badge badge-sm bg-gradient-info">Sil</span>
+                                     </a>
+                                            <a asp-controller="User" asp-action="Update" style="margin-right:1rem">
+                                         <span class="badge badge-sm bg-gradient-info">Güncelle</span>
+                                     </a>
+                                            <a asp-controller="Role" asp-action="AssignRoleToUser" asp-route-id="@item.Id" style="margin-right:1rem">
+                                         <span class="badge badge-sm bg-gradient-info">Rol Ata</span>
+                                     </a>
+                                
+                                 </td>*@
+                                        <td class="align-middle text-center text-sm">
+                                     
+
+                                            <!-- Diğer Aksiyon Butonları -->
+                                            <div class="mt-2">
+                                                    <!-- Şifre Sıfırlama Butonu -->
+                                                 <form asp-area="" asp-controller="Account" asp-action="ResetPasswordAdmin" method="post" class="d-inline">
+                                                        <input type="hidden" name="userId" value="@item.Id" />
+                                                        <input type="text" name="newPassword" placeholder="Yeni Şifre"
+                                                           class="form-control form-control-sm d-inline w-30 mb-1 mt-1"
+                                                           required @(item.IsActive ? "" : "disabled") />  <!-- Burada disabled özelliği ekleniyor -->
+                                                        <button type="submit" class="badge badge-sm bg-gradient-primary m-1" 
+                                                        @(item.IsActive ? "" : "disabled")>
+                                                            Şifreyi Sıfırla
+                                                        </button>
+                                                </form>
+                                          
+                                                <a asp-area="Admin" asp-controller="User" asp-action="UserDetay" asp-route-userId="@item.Id" class="badge badge-sm bg-gradient-primary m-1">
+                                                    Detay
+                                                </a>
+                                                <a onclick="confirmDelete('@item.Id')" class="badge badge-sm bg-gradient-primary m-1">Sil</a>
+
+                                                <a asp-controller="User" asp-action="Update" class="badge badge-sm bg-gradient-primary m-1">
+                                                    Güncelle
+                                                </a>
+                                                <a asp-controller="Role" asp-action="AssignRoleToUser" asp-route-id="@item.Id" class="badge badge-sm bg-gradient-primary m-1">
+                                                    Rol Ata
+                                                </a>
+                                            </div>
+                                        </td>
+                                </tr>
+  }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/jquery/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function confirmDelete(Id) {
+            console.log("UserId", Id);
+
+            if (confirm('Bu kullanıcıyı silmek istediğinize emin misiniz?')) {
+
+                $.ajax({
+                    url: '/Admin/User/UserDelete', // Silme URL'si (Doğru Areas ve Controller ile ayarlanmış)
+                    type: 'POST',
+                    data: { id: Id },
+                    success: function (result) {
+                        console.log(result); // Yanıtı konsola yazdır
+                        if (result.success) {
+                            alert('Kullanıcı başarıyla silindi.');
+                            window.location.href = '/Admin/Admin/Dashboard'; // Başarılı olursa UserList sayfasına yönlendir
+                        } else {
+                            alert('Kullanıcı silinirken bir hata oluştu: ' + result.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Kullanıcı silinirken bir hata oluştu: ' + error);
+                    }
+                });
+            }
+        }
+    </script>
+</div>
+
+
+
+
+
+
+@*
+
+
+   <td class="align-middle text-center text-sm">
+                                 @*    <a asp-controller="Role" asp-action="RolAta">
+                                         <span class="badge badge-sm bg-gradient-success">Rol Ata</span>
+                                     </a>
+                                        <a asp-controller="User" asp-action="Delete">
+                                         <span class="badge badge-sm bg-gradient-danger">Sil</span>
+                                     </a>
+                                     <a asp-controller="User" asp-action="Update">
+                                         <span class="badge badge-sm bg-gradient-warning">Güncele</span>
+                                     </a>
+                                     <a asp-controller="User" asp-action="Details">
+                                         <span class="badge badge-sm bg-gradient-info">Detay</span>
+                                     </a>
+                                    </td>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_LayoultAreas.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Authors table</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr style="text-align:center">
+                                    <th>Kullanıcı Adı</th>
+                                    <th>Adı</th>
+                                    <th>Soyadı</th>
+                                    <th>Durumu</th>
+                                    <th>Rolü</th>
+                                    <th>Admin İşlemleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="text-align:center">
+                                    <td>SerpilUsun1687 </td>
+                                    <td>Serpil</td>
+                                    <td>Uzuntaş</td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="badge badge-sm bg-gradient-success">Aktif</span>
+                                    </td>
+                                       <td class="align-middle text-center text-sm">
+                                        <span class="badge badge-sm bg-gradient-success">Admin</span>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="badge badge-sm bg-gradient-success">Sil</span>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="badge badge-sm bg-gradient-success">Güncele</span>
+                                    </td>
+                                     <td class="align-middle text-center text-sm">
+                                       <span class="badge badge-sm bg-gradient-success">Detay</span>
+                                     </td>
+                                </tr>
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>*@

@@ -1,0 +1,90 @@
+﻿@model KykMotorApp.WebIU.Models.CartItemModel
+
+
+
+      <ul class="nav navbar-nav">
+      
+        @if (User.Identity.IsAuthenticated)
+       {
+
+        if (User.IsInRole("admin"))
+          {
+
+            <nav class="navbar navbar-default navbar-fixed-top"  style="background-color:rgb(0 0 0 / 60%)">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                                    🏛️ Anasayfa
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">
+                                    👨‍💼 Admin Panel
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="nav-link" asp-controller="Account" asp-action="Logoult">
+                                    🔓 Çıkış Yap
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+           }
+        else if (User.IsInRole("standart"))
+        {
+            // Standart Kullanıcı Menüsü
+            <nav class="navbar navbar-default navbar-fixed-top" style="background-color:rgb(0 0 0 / 60%)">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                                    🏛️ Anasayfa
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-area="Kullanicilar" asp-controller="Members" asp-action="Dashboard">
+                                    👨‍💼 Hesabım
+                                </a>
+                            </li>
+                            @* <li><a asp-area="Admin" asp-controller="Admin" asp-action="Dashboard"><i class="fas fa-tools"></i>Admin Ana Panel</a></li>*@
+                            <li>
+                                <a class="nav-link" href="/cart">
+                                    🛒 Sepet <span id="cart-quantity" class="badge bg-danger">@Model.Quantity</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="Account" asp-action="Logoult">
+                                    🔓 Çıkış Yap
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }
+       }
+       
+        else
+        {
+
+            <li><a class="nav-link" asp-controller="Home" asp-action="Index">🏛️ Anasayfa</a></li>
+            <li><a class="nav-link" href="~/Account/BayiBasvuru"> 🖥️ Bayi Başvurusu </a> </li>
+            <li> <a class="nav-link" href="~/Account/SingIn">🔑 Giriş Yap</a> </li>
+        }
+     </ul> 
+
+
+
+
+
+

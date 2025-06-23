@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <style>
+        .containerr {
+            display: flex;
+            justify-content: center;
+        }
+
+        .images {
+            max-width: 300px;
+            margin: 1px;
+        }
+
+        .images img {
+            max-width: 100%;
+        }
+
+        .loupe {
+            display: block;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            box-shadow: 5px 5px 12px black;
+            background: rgba(0, 0, 0, 0.25);
+            cursor: crosshair;
+            overflow: hidden;
+           
+        }
+
+            .loupe img {
+                position: absolute;
+                right: 0;
+            }
+    </style>
+    <div class="containerr">
+        <div class="images">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/614RBksGdwL._AC_SX425_.jpg">
+        </div>
+        <div class="images">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/81-7WGe7ZYL._SX679_.jpg">
+        </div>
+        <div class="images">
+            <img src="kykİmg/adidas1.jpg">
+        </div>
+    </div>
+    <div class="loupe"></div>
+
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        var $loupe = $(".loupe"),
+            loupeWidth = $loupe.width(),
+            loupeHeight = $loupe.height();
+        //resmin üzerine gidince tetiklenecek foksiyon bu foksiyonun amacı
+        /* 1: sayfa yüklendiginde bir event oluştur event parametre olarak "mouseenter" dinle ve hangi dom elementinin üzerinde işlem yapılacagı ".image" ve bir fonction çalıştır*/
+        
+        $(document).on("mouseenter", ".images", function (e) {
+         
+            var $currImage = $(this),
+                $img = $('<img/>')
+                    .attr('src', $('img', this).attr("src"))
+                    .css(
+                        {
+                            'width': $currImage.width() * 2,
+                            'height': $currImage.height() * 2
+                        });
+                 console.log("Resim Src:", $img.attr("src"));
+                  console.log("Resim Genişlik:", $img.width());
+                     console.log("Resim Yükseklik:", $img.height());
+            $loupe.html($img).fadeIn(100);/* $loupe.html parametre olarak $img veriyoruz ve 100 yani 0.1 milisaniye resmin üzerine gidilin ce görülecek*/ 
+
+       /* Bu sayfa yüklendigin de hazır halde bekletiliyor taki mause hareket etmeye başlatınca bu foksiyon tetiklenecek*/
+            $(document).on("mousemove", moveHandler);
+            function moveHandler(e) {
+                var imageOffset = $currImage.offset(),
+                    fx = imageOffset.left - loupeWidth / 2,
+                    fy = imageOffset.top - loupeHeight / 2,
+                    fh = imageOffset.top + $currImage.height() + loupeHeight / 2,
+                    fw = imageOffset.left + $currImage.width() + loupeWidth / 2;
+                console.log("imageOffset", imageOffset);
+                var loupeOffset = $loupe.offset();
+                console.log("loupeOffset", loupeOffset);
+             
+             
+
+                $loupe.css({
+                    'left': e.pageX - 100,
+                 
+                    'top': e.pageY - 100
+                });
+              
+                var loupeOffset = $loupe.offset(),
+                    lx = loupeOffset.left,
+                    ly = loupeOffset.top,
+                    lw = lx + loupeWidth,
+                    lh = ly + loupeHeight,
+                    bigy = (ly - loupeHeight / 4 - fy) * 2,
+                    bigx = (lx - loupeWidth / 4 - fx) * 2;
+
+                $img.css({ 'left': -bigx, 'top': -bigy });
+
+                if (lx < fx || lh > fh || ly < fy || lw > fw) {
+                    $img.remove();
+                    $(document).off("mousemove", moveHandler);
+                    $loupe.fadeOut(100);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

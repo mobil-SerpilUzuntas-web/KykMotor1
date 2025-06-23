@@ -1,0 +1,482 @@
+﻿@model OrderModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .modal-content {
+            width: 150%;
+        }
+        textarea {
+            height: 150px;
+        }
+    </style>
+</head>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                @foreach (var item in Model.BuyerModel)
+                {
+                    <h4>Alıcı Bilgileri</h4>
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <label>Alıcı Id</label>
+                            <input asp-for="@item.BuyerId" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Alıcı Adı</label>
+                            <input asp-for="@item.Name" class="form-control" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Alıcı Soyadı</label>
+                            <input asp-for="@item.Surname" class="form-control" />
+                        </div>
+                        <!-- Diğer alanlar aynı şekilde -->
+                    </div>
+                    <!-- Adres Düzenle Butonu -->
+                    <button 
+                        type="button" 
+                        class="btn btn-primary" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal" 
+                        data-buyerid="@item.BuyerId"
+                        data-name="@item.Name"
+                        data-surname="@item.Surname"
+                        data-city="@item.City"
+                        data-country="@item.Country"
+                        data-zipcode="@item.ZipCode"
+                        data-address="@item.RegistrationAddress"
+                        data-gsmnumber="@item.GsmNumber"
+                        data-email="@item.Email">
+                        Adres Düzenle
+                    </button>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Adres Düzenle</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="UpdateTeslimat" asp-controller="Cart" method="post">
+                        <input type="hidden" id="BuyerId" name="BuyerId" />
+                        <div class="mb-3">
+                            <label>Buyer Id</label>
+                            <input type="text" id="BuyerId" name="BuyerId" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Adı</label>
+                            <input type="text" id="Name" name="Name" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Soyadı</label>
+                            <input type="text" id="Surname" name="Surname" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Şehir</label>
+                            <input type="text" id="City" name="City" class="form-control" />
+                        </div>
+                        <!-- Diğer alanlar aynı şekilde -->
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal açıldığında verileri doldur
+        const exampleModal = document.getElementById('exampleModal');
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget; // Modalı tetikleyen buton
+            const modal = exampleModal;
+
+            // Butondan verileri al
+            const buyerId = button.getAttribute('data-buyerid');
+            const name = button.getAttribute('data-name');
+            const surname = button.getAttribute('data-surname');
+            const city = button.getAttribute('data-city');
+            const country = button.getAttribute('data-country');
+            const zipCode = button.getAttribute('data-zipcode');
+            const address = button.getAttribute('data-address');
+            const gsmNumber = button.getAttribute('data-gsmnumber');
+            const email = button.getAttribute('data-email');
+
+            // Modal içindeki inputlara verileri doldur
+            modal.querySelector('#BuyerId').value = buyerId;
+            modal.querySelector('#Name').value = name;
+            modal.querySelector('#Surname').value = surname;
+            modal.querySelector('#City').value = city;
+            modal.querySelector('#Country').value = country;
+            modal.querySelector('#ZipCode').value = zipCode;
+            modal.querySelector('#RegistrationAddress').value = address;
+            modal.querySelector('#GsmNumber').value = gsmNumber;
+            modal.querySelector('#Email').value = email;
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+@*@model OrderModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .modal-content{
+            width:150%;
+        }
+        textarea{
+            height:150px;
+        }
+    </style>
+</head>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+
+
+    <div class="col-12">
+
+            <div class="row">
+                <div class="col-md-6">
+<h1>Yeni Adres ekle kısmı</h1>
+                 
+             
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#duzenleModal" data-bs-whatever="">Yeni Adres Ekle</button>
+                        <div class="modal fade" id="duzenleModal" tabindex="-1" aria-labelledby="duzenleModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="duzenleModalLabel">New message to </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form asp-action="Teslimat" asp-controller="Cart" method="post">
+                                            
+                                            <h4>Buyer Alıcı Bilgileri</h4>
+                                            <div class="row mb-4">
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="buyerName">Ad</label>
+                                                    <input type="text" id="buyerName" name="BuyerModel.Name" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="buyerSurname">Soyad</label>
+                                                    <input type="text" id="buyerSurname" name="BuyerModel.Surname" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="buyerIdentityNumber">Tc Numara</label>
+                                                    <input type="text" id="buyerIdentityNumber" name="BuyerModel.IdentityNumber" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="aliciSehir">Şehir</label>
+                                                    <input type="text" id="aliciSehir" name="BuyerModel.City" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="aliciIlce">İlce</label>
+                                                    <input type="text" id="aliciIlce" name="BuyerModel.Country" class="form-control" />
+                                                </div>
+
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="aliciZipCode">Zip Kodu</label>
+                                                    <input type="text" id="aliciZipCode" name="BuyerModel.ZipCode" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="alıciAdres">Alıcı Adresi</label>
+                                                    <textarea id="aliciaAdres" name="BuyerModel.RegistrationAddress" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="aiciTel">Telefon</label>
+                                                    <input type="text" id="aiciTel" name="BuyerModel.GsmNumber" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="aliciEmail">Email</label>
+                                                    <input type="email" id="aliciEmail" name="BuyerModel.Email" class="form-control" />
+                                                </div>
+
+                                            </div>
+                                            <br>
+                                            <h4>Kargo Adres Bilgileri</h4>
+                                            <div class="row mb-4">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="kargoAdiSoyadi">Adı Soyadı</label>
+                                                    <input type="text" id="kargoAdiSoyadi" name="ShippingModel.ContactName" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="kargoAdres">Adres</label>
+                                                    <p>Kargonuzun size sorunsuz bir şekilde ulaşabilmesi için mahalle, cadde, sokak, bina gibi detay bilgileri eksiksiz girdiğinizden emin olun.</p>
+                                                    <textarea id="kargoAdres" name="ShippingModel.Description" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="kargoSehir">Şehir </label>
+                                                    <input type="text" id="kargoSehir" name="ShippingModel.City" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="kargoIlce">İlçe</label>
+                                                    <input type="text" id="kargoIlce" name="ShippingModel.Country" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="kargoZipKodu">ZipKodu</label>
+                                                    <input type="text" id="kargoZipKodu" name="ShippingModel.ZipCode" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <h4>Fatura Bilgileri</h4>
+                                            <div class="row mb-4">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="faturaAdiSoyadi">Adı Soyadı</label>
+                                                    <input type="text" id="faturaAdiSoyadi" name="BillingModel.ContactName" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="faturaAdres">Adres</label>
+                                                    <textarea id="faturaAdres" name="BillingModel.Description" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-4">
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="faturaSehir">Şehir </label>
+                                                    <input type="text" id="kargoSehir" name="BillingModel.City" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="faturaIlce">İlçe</label>
+                                                    <input type="text" id="kargoIlce" name="BillingModel.Country" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="faturaZipKodu">ZipKodu</label>
+                                                    <input type="text" id="faturaZipKodu" name="BillingModel.ZipCode" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                                <button type="submit" class="btn btn-primary">Kaydet</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                  
+
+                </div>
+            </div>
+
+<br />
+        @if(Model != null)
+        {
+             <div class="row">
+                <div class="col-md-6">
+                   @foreach (var item in Model.BuyerModel)
+                    {
+                        <h4>Alıcı Bilgileri</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-4 mb-3">
+                                <label>Alıcı Id</label>
+                                <input asp-for="@item.BuyerId" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Alıcı Adı</label>
+                                <input asp-for="@item.Name" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Alıcı Soyadı</label>
+                                <input asp-for="@item.Surname" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Alıcı Tc No</label>
+                                <input asp-for="@item.IdentityNumber" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4 mb-3">
+                                <label>Şehir</label>
+                                <input asp-for="@item.City" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>İlçe</label>
+                                <input asp-for="@item.Country" class="form-control" />
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label>ZipKodu</label>
+                                <input asp-for="@item.ZipCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12 mb-3">
+                                <label>Adres</label>
+                                <textarea asp-for="@item.RegistrationAddress" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label>Telefon</label>
+                                <input asp-for="@item.GsmNumber" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Email</label>
+                                <input asp-for="@item.Email" class="form-control" />
+                            </div>
+                        </div>
+                       
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="">Adres Düzünle </button>
+
+       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message to </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                     <div class="modal-footer">
+                     <form asp-action="UpdateTeslimat" asp-controller="Cart" method="post">
+                         <h4>Alıcı Bilgileri</h4>
+                      <input type="hidden" id="BuyerId" name="BuyerId" />
+                       <div class="row mb-4">
+                              <div class="col-md-4 mb-3">
+                                <label>Alıcı Id</label>
+                                <input asp-for="@item.BuyerId" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Alıcı Adı</label>
+                                <input asp-for="@item.Name" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Alıcı Soyadı</label>
+                                <input asp-for="@item.Surname" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Alıcı Tc No</label>
+                                <input asp-for="@item.IdentityNumber" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4 mb-3">
+                                <label>Şehir</label>
+                                <input asp-for="@item.City" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>İlçe</label>
+                                <input asp-for="@item.Country" class="form-control" />
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label>ZipKodu</label>
+                                <input asp-for="@item.ZipCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12 mb-3">
+                                <label>Adres</label>
+                                <textarea asp-for="@item.RegistrationAddress" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label>Telefon</label>
+                                <input asp-for="@item.GsmNumber" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Email</label>
+                                <input asp-for="@item.Email" class="form-control" />
+                            </div>
+                        </div>
+     
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                        </form>       
+                          
+                          
+                         
+                     </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+                    }      
+                </div>
+           </div> 
+        }
+      
+        @*Bu Modal Adres Düzenleme olacak*@
+        
+  
+                    
+                                        
+@*    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message to </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                     <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                     </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>*@
+
